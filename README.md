@@ -17,6 +17,9 @@
 * Deployment instructions
 
 * ... -->
+## ER図
+
+[ER図.pdf](https://github.com/Kurikichi/fleamarket_sample_79a/files/4959984/ER.pdf)
 
 
 ## users table​
