@@ -25,7 +25,6 @@
 ## users table​
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false, foreign_key: true|
 |nickname|string|null: false|
 |password|string|null:false, length:{minimum:7}|
 |confirmation_password|null:false, length:{minimum:7}|
@@ -38,8 +37,8 @@
 
 ### Association
 - has_many :products
-- belongs_to :delivery_address
-- belongs_to :card
+- has_one :delivery_address
+- has_one :card
 
 
 ## products table
@@ -85,7 +84,6 @@
 |card_id|integer|null: false|
 
 ### Association
-- belongs_to :group
 - belongs_to :user
 
 
@@ -96,7 +94,7 @@
 |image|string|null: false|
 
 ### Association
-- belongs_to :user
+- belongs_to :product
 
 
 ## category table
