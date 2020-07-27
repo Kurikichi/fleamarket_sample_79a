@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
   before_action :set_product, except: [:index, :new, :create]
 
   def index
@@ -35,6 +36,9 @@ class ProductsController < ApplicationController
     redirect_to root_path
   end
   
+  def show
+  end
+  
 
   private
 
@@ -45,7 +49,5 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-
-  
 
 end

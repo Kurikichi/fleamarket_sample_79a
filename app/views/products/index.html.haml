@@ -2,3 +2,69 @@
 %br/
 .contents
   = render @products
+
+.main--toppage
+  %section.pickupContainer
+    %h2.head
+      ピックアップカテゴリー
+    .productBox
+      .productHead
+        = link_to '#' do
+          %h3.title
+            新規投稿商品
+      .productLists
+        - @products.each do |product|
+          -break if product.id == 5
+          .productList
+            = link_to product_path(product) do
+              %figure.productList--img
+                = image_tag "#{product.images[0].image}", class: 'image__category'
+                  -if product.id == 2
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
+            .productList--body
+              %h3.product--name
+                = product.name
+              .details
+                %ul
+                  %li
+                    = "#{product.price}円" 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
+
+  %section.pickupContainer
+    %h2.head
+      ピックアップブランド
+    .productBox
+      .productHead
+        = link_to '#' do
+          %h3.title
+            新規投稿商品
+      .productLists
+        - @products.each do |product|
+        -next if product.id < 5
+          .productList
+            = link_to product_path(product) do
+              %figure.productList--img
+                = image_tag "#{product.images[0].image}", class: 'image__brand'
+                  -if product.id == 7
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
+            .productList--body
+              %h3.product--name
+                = product.name
+              .details
+                %ul
+                  %li
+                    = "#{product.price}円" 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
+
