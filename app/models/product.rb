@@ -22,7 +22,7 @@ class Product < ApplicationRecord
     "出品中":1, "売り切れ":2
   }
   
-  validates :images, presence:true
+  
   validates :name, presence:true, length: { maximum: 40 }
   validates :price, presence:true, numericality: { greater_than_or_equal_to: 300 }
   validates :explanation, presence:true, length: { maximum: 1000 }
@@ -32,6 +32,5 @@ class Product < ApplicationRecord
   validates :days_until_shipping, presence:true
   validates :category_id, presence:true
   validates :exhibition_status, presence:true
-  # validates :user_id, presence:true
 
 end

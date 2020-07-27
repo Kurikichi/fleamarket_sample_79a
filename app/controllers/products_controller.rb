@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.save
+    if params[:product][:images_attributes] && @product.save
       redirect_to root_path
     else
       render :new
@@ -39,11 +39,13 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :explanation, :brand, :status, :shipping_charges, :shipping_origin, :days_until_shipping, :category_id, :user_id, images_attributes:  [:src, :_destroy, :id]).merge(exhibition_status: 1)
+    params.require(:product).permit(:name, :price, :explanation, :brand, :status, :shipping_charges, :shipping_origin, :days_until_shipping, :category_id, images_attributes:  [:src, :_destroy, :id]).merge(exhibition_status: 1)
   end
   
   def set_product
     @product = Product.find(params[:id])
   end
+
+  
 
 end
