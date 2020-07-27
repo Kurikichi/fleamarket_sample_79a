@@ -10,8 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_23_090703) do
 
+ActiveRecord::Schema.define(version: 2020_07_25_153554) do
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src"
+    t.bigint "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_images_on_product_id"
+  end
+  
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "category_name"
     t.string "ancestry"
@@ -19,26 +28,22 @@ ActiveRecord::Schema.define(version: 2020_07_23_090703) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "product_id"
-    t.string "image"
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.text "explanation"
+    t.string "brand"
+    t.integer "status"
+    t.integer "shipping_charges"
+    t.integer "shipping_origin"
+    t.integer "days_until_shipping"
     t.integer "category_id"
     t.integer "user_id"
-    t.string "name"
-    t.text "explanation"
-    t.integer "price"
-    t.string "brand"
-    t.string "status"
-    t.integer "shipping_charges"
-    t.string "shipping_origin"
-    t.integer "days_until_shipping"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "exhibition_status"
   end
+
+  add_foreign_key "images", "products"
 
 end
