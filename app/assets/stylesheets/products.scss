@@ -1,0 +1,118 @@
+.main--toppage {
+  width: 100%;
+  background-color: #f8f8f8;  .pickupContainer {
+    background-color: #f8f8f8;
+    padding: 80px 0 0;
+    height: 100%;
+    .head {
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.4;
+      font-weight: bold;
+    }
+    .productBox {
+      .productHead {
+        text-align: center;
+        a {
+          font-size: 24px;
+          color: #3ccace;
+          text-decoration: none;
+          .title {
+            font-weight: bold;
+          }
+        }
+      }
+      .productLists {
+        width: 760px;
+        margin: 26px auto;
+        display: flex;
+        justify-content: space-around;
+        .productList {
+          width: 220px;
+          display: inline-block;
+          a {
+            display: inline-block;
+            background-color: white;
+            text-decoration: none;
+            .productList--img {
+              width: 220px;
+              height: 150px;
+              position: relative;
+              overflow: hidden;
+              margin: 0;
+              z-index: auto;
+              &__items-sold{
+                width: 0;
+                height: 0;
+                border-width: 100px 100px 0 0;
+                border-color: #ea352d transparent transparent transparent;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                border-style: solid;
+                &__inner{
+                  top: -80px;
+                  font-size: 20px;
+                  position: absolute;
+                  left: 0;
+                  z-index: 2;
+                  color: #fff;
+                  transform: rotate(-45deg);
+                  letter-spacing: 2px;
+                  font-weight: 600;
+                }
+              }
+              .image__category {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                z-index: auto;
+                height: 150px;
+                object-fit: cover;
+              }
+              .image__brand {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                z-index: auto;
+                height: 150px;
+                object-fit: cover;
+              }
+            }
+          }
+          .productList--body {
+            background-color: white;
+            color: #333333;
+            padding: 16px;
+            .product--name {
+              overflow: hidden;
+              line-height: 1.5;
+              font-size: 16px;
+              text-align: left;
+            }
+            .details {
+              font-size: 16px;
+              ul {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              }
+              p {
+                font-size: 10px;
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

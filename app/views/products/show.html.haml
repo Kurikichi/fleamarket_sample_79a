@@ -1,0 +1,34 @@
+%p#notice= notice
+%p
+  %strong Category:
+  = @product.category_id
+%p
+  %strong User:
+  = @product.user_id
+%p
+  %strong Name:
+  = @product.name
+%p
+  %strong Explanation:
+  = @product.explanation
+%p
+  %strong Price:
+  = @product.price
+%p
+  %strong Brand:
+  = @product.brand
+%p
+  %strong Status:
+  = @product.status
+%p
+  %strong Shipping charges:
+  = @product.shipping_charges
+%p
+  %strong Shipping origin:
+  = @product.shipping_origin
+%p
+  %strong Days until shipping:
+  = @product.days_until_shipping
+= link_to 'Edit', edit_product_path(@product)
+|
+= link_to 'Back', products_path
