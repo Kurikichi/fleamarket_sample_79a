@@ -1,34 +1,99 @@
-%p#notice= notice
-%h1 Products
-%table
-  %thead
-    %tr
-      %th Category
-      %th User
-      %th Name
-      %th Explanation
-      %th Price
-      %th Brand
-      %th Status
-      %th Shipping charges
-      %th Shipping origin
-      %th Days until shipping
-      %th{:colspan => "3"}
-  %tbody
-    - @products.each do |product|
-      %tr
-        %td= product.category_id
-        %td= product.user_id
-        %td= product.name
-        %td= product.explanation
-        %td= product.price
-        %td= product.brand
-        %td= product.status
-        %td= product.shipping_charges
-        %td= product.shipping_origin
-        %td= product.days_until_shipping
-        %td= link_to 'Show', product
-        %td= link_to 'Edit', edit_product_path(product)
-        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Product', new_product_path
+-# %p#notice= notice
+-# %h1 Products
+-# %table
+-#   %thead
+-#     %tr
+-#       %th Category
+-#       %th User
+-#       %th Name
+-#       %th Explanation
+-#       %th Price
+-#       %th Brand
+-#       %th Status
+-#       %th Shipping charges
+-#       %th Shipping origin
+-#       %th Days until shipping
+-#       %th{:colspan => "3"}
+-#   %tbody
+-#     - @products.each do |product|
+-#       %tr
+-#         %td= product.category_id
+-#         %td= product.user_id
+-#         %td= product.name
+-#         %td= product.explanation
+-#         %td= product.price
+-#         %td= product.brand
+-#         %td= product.status
+-#         %td= product.shipping_charges
+-#         %td= product.shipping_origin
+-#         %td= product.days_until_shipping
+-#         %td= link_to 'Show', product
+-#         %td= link_to 'Edit', edit_product_path(product)
+-#         %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+-# %br/
+-# = link_to 'New Product', new_product_path
+
+.main--toppage
+  %section.pickupContainer
+    %h2.head
+      ピックアップカテゴリー
+    .productBox
+      .productHead
+        = link_to '#' do
+          %h3.title
+            新規投稿商品
+      .productLists
+        - @products.each do |product|
+          -break if product.id == 5
+          .productList
+            = link_to product_path(product) do
+              %figure.productList--img
+                = image_tag "#{product.images[0].image}", class: 'image__category'
+                  -if product.id == 2
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
+            .productList--body
+              %h3.product--name
+                = product.name
+              .details
+                %ul
+                  %li
+                    = "#{product.price}円" 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
+
+  %section.pickupContainer
+    %h2.head
+      ピックアップブランド
+    .productBox
+      .productHead
+        = link_to '#' do
+          %h3.title
+            新規投稿商品
+      .productLists
+        - @products.each do |product|
+        -next if product.id < 5
+          .productList
+            = link_to product_path(product) do
+              %figure.productList--img
+                = image_tag "#{product.images[0].image}", class: 'image__brand'
+                  -if product.id == 7
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
+            .productList--body
+              %h3.product--name
+                = product.name
+              .details
+                %ul
+                  %li
+                    = "#{product.price}円" 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
