@@ -1,0 +1,30 @@
+.search-pcheader
+  .headerInner
+    .mainHeader
+      %h1.icon
+        = link_to root_path do
+          = image_tag ("/assets/logo/logo.png")
+      .searchBox
+        %form{"accept-charset" => "UTF-8", :action => "#", :method => "get"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+          %input#searchInput.searchBox--input{:name => "key", :placeholder => "キーワードから探す"}/
+          %button{:type => "submit"}
+            .searchBox__icon
+              %img{:src => "/assets/icon/icon-search 1.png"}/
+              %input{:name => "authenticity_token", :type => "hidden", :value => "1pM33Cjt1diHvUyktLAENxrrv1bIFbrlgMe7/f4NpruCrlWfjb7O6KmonDbPVZp+czB9gbFNPwVHPNAdzbhb0w=="}/
+      %ul.resultLists
+    .nav
+      %ul.left-items
+        %li.left-items__item.left-items__item--first
+          %a{href: "#", class: "category-btn"}カテゴリー
+        %li.left-items__item
+          = link_to "#" do
+            ブランド
+      %ul.right-items
+        %li.right-item1
+          = link_to "#" do
+            ログイン
+        %li.right-item2
+          = link_to "#" do
+            新規会員登録
+      
