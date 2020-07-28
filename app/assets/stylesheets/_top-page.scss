@@ -1,10 +1,8 @@
 .main--toppage {
-  width: 100%;
-  background-color: #f8f8f8;
   .mainVisual {
     background-color: gray;
     height: 560px;
-    background-image: image-url("bg-mainVisual-pict_pc.jpg");
+    background-image: image-url("/assets/pict/bg-mainVisual-pict_pc.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -35,7 +33,7 @@
         margin-top: 24px;
         .aBtn {
           width: 180px;
-          margin-right: 20px;
+          margin-right: 10px;
           img {
             width: 100%;
           }
@@ -62,6 +60,16 @@
       padding-bottom: 15px;
       position: relative;
     }
+    .subtitle::after {
+      content: "";
+      width: 70px;
+      height: 4px;
+      background-color: #3CCACE;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
     .lists {
       text-align: center;
       display: flex;
@@ -86,7 +94,7 @@
             font-size: 30px;
             margin: 0 5px 0 0;
             padding: 10px 20px ;
-            background-color: khaki;
+            background-color: #3ccace;
             color: #ffffff;
           }
           .pic {
@@ -100,7 +108,7 @@
           line-height: 50px;
           margin: 0 0 0 2;
           .text {
-            color: salmon;
+            color: #3ccace;
           }
         }
         .description {
@@ -116,7 +124,7 @@
   }
   
   .topMiddleDl {
-    background-image: image-url("bg-topMiddleDl-pict.jpg");
+    background-image: image-url("/assets/pict/bg-topMiddleDl-pict.jpg");
     background-position: bottom right;
     background-size: cover;
     height: 400px;
@@ -163,6 +171,16 @@
       margin-bottom: 25px;
       padding-bottom: 15px;
       position: relative;
+    }
+    .head::after {
+      content: "";
+      width: 70px;
+      height: 4px;
+      background-color: #3CCACE;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .items {
       max-width: calc(1040px + 20px);
