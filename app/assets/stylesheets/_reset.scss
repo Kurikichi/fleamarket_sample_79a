@@ -22,6 +22,12 @@ html{
   TODO test putting a class on HEAD.
       - Fails on FF.
 */
+* {
+  box-sizing: border-box;
+}
+body{
+  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+}
 body,
 div,
 dl,
