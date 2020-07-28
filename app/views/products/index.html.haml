@@ -1,12 +1,12 @@
 .main--toppage
-  -# = render partial: 'layouts/header'
+  = render partial: 'layouts/header'
   %section.mainVisual
     .mainVisual__content
       %h2.mainVisual__content__subtitle
         %br
         人生を変えるフリマアプリ
       %p.mainVisual__content__text
-        フリマは誰でも簡単に購入できる
+        FURIMAはだれでもかんたんに出品・購入できる
         %br/
         フリマアプリです
       .mainVisual__content__btn
@@ -19,7 +19,7 @@
 
   %section.topIntroduction
     %h2.subtitle
-      フリマが選ばれる三つの理由
+      FURIMAが選ばれる3つの理由
     %ul.lists
       %li.list
         .list__pict
@@ -85,29 +85,23 @@
           スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
       %section.item
         %figure.item__img
-          = image_tag '/assets/icon/icon-02.png', class: 'item__img__icon'
+          = image_tag '/assets/icon/icon-03.png', class: 'item__img__icon'
         %h3.item__subtitle
           売上金は即日振込みに対応
         %p.item__detail
           午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします
       %section.item
         %figure.item__img
-          = image_tag '/assets/icon/icon-03.png', class: 'item__img__icon'
+          = image_tag '/assets/icon/icon-04.png', class: 'item__img__icon'
         %h3.item__subtitle
           様々な支払いに対応
         %p.item__detail
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
 
-
-
   %section.pickupContainer
     %h2.head
-      ピックアップカテゴリー
+      新規投稿商品
     .productBox
-      .productHead
-        = link_to '#' do
-          %h3.title
-            新規投稿商品
       .productLists
         - @products.each do |product|
           -break if product.id == 5
@@ -131,15 +125,6 @@
                     0
                 %p
                   (税込)
-
-  %section.pickupContainer
-    %h2.head
-      ピックアップブランド
-    .productBox
-      .productHead
-        = link_to '#' do
-          %h3.title
-            新規投稿商品
       .productLists
         - @products.each do |product|
         -next if product.id < 5
@@ -163,6 +148,8 @@
                     0
                 %p
                   (税込)
--# = render partial: 'layouts/appBanner'
--# = render partial: 'layouts/footer'
--# = render partial: 'layouts/display'
+
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
+= render partial: 'layouts/display'
