@@ -113,7 +113,7 @@
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].image}", class: 'image__category'
+                = image_tag "#{product.images[0].src}", class: 'image__category'
                   -if product.id == 2
                   .productList--img__items-sold
                     .productList--img__items-sold__inner 
@@ -136,7 +136,7 @@
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].image}", class: 'image__brand'
+                = image_tag "#{product.images[0].src}", class: 'image__brand'
                   -if product.id == 7
                   .productList--img__items-sold
                     .productList--img__items-sold__inner 
