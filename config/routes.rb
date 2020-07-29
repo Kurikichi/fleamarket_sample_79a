@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'products#index'
   resources :products, except: :index
   resources :categories
   resources :images
+  resources :users, only: :show
  
  
 
