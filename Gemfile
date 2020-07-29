@@ -73,4 +73,4 @@ gem 'jquery-rails'
 gem "haml-rails"
 gem 'active_hash'
 gem 'font-awesome-rails'
-
+gem 'devise'

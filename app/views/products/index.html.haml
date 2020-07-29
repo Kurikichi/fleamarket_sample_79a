@@ -1,7 +1,12 @@
-= link_to '出品', new_product_path
-%br/
-.contents
-  = render @products
+
+- if user_signed_in? 
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
+  = link_to "出品する", new_product_path
+- else
+  = link_to "ログイン", new_user_session_path
+  = link_to "新規登録", new_user_registration_path
+
+
 
 .main--toppage
   = render partial: 'layouts/header'
@@ -113,11 +118,15 @@
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].image}", class: 'image__category'
-                  -if product.id == 2
-                  .productList--img__items-sold
-                    .productList--img__items-sold__inner 
-                      SOLD
+                - product.images.each do |image|
+                  = image_tag image.src.url,width: "230", height: '150'
+                  = link_to '詳細', product_path(product.id), method: :get       
+                  - if product.id == 2
+                    .productList--img__items-sold                    
+                      .productList--img__items-sold__inner 
+                        SOLD
+
+                
             .productList--body
               %h3.product--name
                 = product.name
@@ -132,15 +141,19 @@
                   (税込)
       .productLists
         - @products.each do |product|
-        -next if product.id < 5
+          -break if product.id == 5
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].image}", class: 'image__brand'
-                  -if product.id == 7
-                  .productList--img__items-sold
-                    .productList--img__items-sold__inner 
-                      SOLD
+                - product.images.each do |image|
+                  = image_tag image.src.url,width: "230", height: '150'
+                  = link_to '詳細', product_path(product.id), method: :get       
+                  - if product.id == 2
+                    .productList--img__items-sold                    
+                      .productList--img__items-sold__inner 
+                        SOLD
+
+                
             .productList--body
               %h3.product--name
                 = product.name
@@ -152,10 +165,8 @@
                     %i.fa.fa-star.likeIcon
                     0
                 %p
+
                   (税込)
-
-
-
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
 = render partial: 'layouts/display'
