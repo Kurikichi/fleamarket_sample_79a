@@ -1,0 +1,42 @@
+%h2 ユーザー情報登録
+= form_for(@user, url: user_registration_path) do |f|
+  = render "devise/shared/error_messages", resource: @user
+  .field
+    = f.label :nickname
+    %br/
+    = f.text_field :nickname
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name
+  .field
+    = f.label :kana_first_name
+    %br/
+    = f.text_field :kana_first_name
+  .field
+    = f.label :kana_last_name
+    %br/
+    = f.text_field :kana_last_name
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :birthday
+    %br/
+    = f.number_field :birthday
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password,{autocomplete: "new-password",placeholder: "7文字以上",class:'field',id:"password"}
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation,{autocomplete: "new-password",placeholder: "7文字以上",class:'field',id:"password"}
+  .actions
+    = f.submit "Next"
+= render "devise/shared/links"
