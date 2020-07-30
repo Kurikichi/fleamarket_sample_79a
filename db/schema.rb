@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_07_28_112902) do
 
   create_table "delivery_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -20,9 +21,18 @@ ActiveRecord::Schema.define(version: 2020_07_28_112902) do
     t.string "address", null: false
     t.string "building_name"
     t.string "phone_number"
+
+　end
+  
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "category_name"
+    t.string "ancestry"
+
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,6 +43,35 @@ ActiveRecord::Schema.define(version: 2020_07_28_112902) do
     t.string "kana_first_name", null: false
     t.string "kana_last_name", null: false
     t.date "birthday", null: false
+  end
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src"
+    t.bigint "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "explanation"
+    t.string "brand"
+    t.integer "status"
+    t.integer "shipping_charges"
+    t.integer "shipping_origin"
+    t.integer "days_until_shipping"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.integer "exhibition_status"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -41,5 +80,9 @@ ActiveRecord::Schema.define(version: 2020_07_28_112902) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+
+
+  add_foreign_key "images", "products"
 
 end

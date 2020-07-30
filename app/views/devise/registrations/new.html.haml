@@ -1,3 +1,4 @@
+
 %h2 ユーザー情報登録
 = form_for(@user, url: user_registration_path) do |f|
   = render "devise/shared/error_messages", resource: @user
@@ -21,11 +22,13 @@
     = f.label :kana_last_name
     %br/
     = f.text_field :kana_last_name
+
   .field
     = f.label :email
     %br/
     = f.email_field :email, autofocus: true, autocomplete: "email"
   .field
+
     = f.label :birthday
     %br/
     = f.number_field :birthday
