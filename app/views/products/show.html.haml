@@ -1,34 +1,132 @@
-%p#notice= notice
-%p
-  %strong Category:
-  = @product.category_id
-%p
-  %strong User:
-  = @product.user_id
-%p
-  %strong Name:
-  = @product.name
-%p
-  %strong Explanation:
-  = @product.explanation
-%p
-  %strong Price:
-  = @product.price
-%p
-  %strong Brand:
-  = @product.brand
-%p
-  %strong Status:
-  = @product.status
-%p
-  %strong Shipping charges:
-  = @product.shipping_charges
-%p
-  %strong Shipping origin:
-  = @product.shipping_origin
-%p
-  %strong Days until shipping:
-  = @product.days_until_shipping
-= link_to 'Edit', edit_product_path(@product)
-|
-= link_to 'Back', products_path
+.main-header
+  = render partial: 'layouts/header'
+  -# %nav.bread-crumbs
+  -#   %ul
+  -#     %li 
+  -#       = link_to root_path do
+  -#         furima
+  -#       = icon('fas','angle-right')
+  -#     %li 
+  -#       - breadcrumb :items_show
+  -#       = breadcrumbs separator: " &rsaquo; "
+
+.main-contents
+  .show-main
+    .show-main__item-box
+      .show-main__item-box__item-name
+        = @product.name
+      .show-main__item-box__item-image
+        .show-main__item-box__item-image__main-img
+          - @product.images.first(1).each do |img|
+            = image_tag "#{img.src}", size:"400x350", class: "top-img"
+            -if @product.buyer_id.present? 
+              .top-img__sold
+                .top-img__sold__inner 
+                  SOLD
+        .show-main__item-box__item-image__sub-img
+          -# - @products.images.first(10).each do |img|
+          -#   = image_tag "#{img.url}", size:"140x100"
+          
+      .show-main__item-box__item-price
+        %p
+          = "#{@product.price}円" 
+        .show-main__item-box__item-price__item-price-detail
+          (税込)送料込み
+        .show-main__item-box__item-price__item-price-btn
+          - if @product.buyer_id.present?
+            = link_to root_path do
+              売り切れました
+          - elsif user_signed_in?
+            - unless current_user.id == @products.seller_id
+              = link_to item_buyers_path(@products) do
+                商品購入
+          - else
+            = link_to require_login_path do
+              ログインがまだな方はこちらからお願いします
+
+        .show-main__item-box__item-detail
+          = @product.explanation
+
+      .show-main__item-box__item-table
+        %table
+          %tr.one
+            %th 出品者
+            %td
+              = @product.user
+          %tr.two
+            -# %th カテゴリー
+            -# %td
+            -#   = @parent.name
+            -#   %br
+            -#   >
+            -#   = @child.name
+            -#   %br
+            -#   >>
+            -#   = @grandchild.name
+              
+          %tr.tree
+            %th ブランド
+            %td 
+              = @product.brand
+          %tr.one
+            %th 商品の状態
+            %td 
+              = @product.status
+          %tr.one
+            %th 配送料の負担
+            %td
+              = @product.shipping_charges
+          %tr.one
+            %th 発送元の地域
+            %td 
+              = @product.shipping_origin
+          %tr.one
+            %th 発送日の目安
+            %td 
+              = @product.days_until_shipping
+
+
+      .show-main__item-box__option-area
+        .show-main__item-box__option-area__like-btn
+          = button_tag type: 'button', class: "like-btn" do
+            = fa_icon "thumbs-up"
+            お気に入り
+        .show-main__item-box__option-area__seller-area
+          - if user_signed_in? && current_user.id == @products.seller_id
+            = link_to edit_item_path(@products), class: "edit__btn" do
+              編集
+            = link_to item_path(@products), method: :delete, class: "delete__btn" do
+              削除
+
+        .show-main__item-box__option-area__optional
+          =link_to '#', class:"optional" do
+            = fa_icon "flag"
+            不適切な商品の通報
+
+      -# .show-main__item-box__comment-box
+      -#   = form_with(model: [@products, @comment], local: true, id: "new_comment" ) do |f|
+      -#     .show-main__item-box__comment-box__new-comment
+      -#       = f.text_area :comment, class: "new-comment", placeholder: "コメントする"
+      -#     .show-main__item-box__comment-box__explanation
+      -#       %p 相手のことを考え丁寧なコメントを心がけましょう。
+      -#       %p 不快な言葉遣いなどは利用制限や退会処分になることがあります。
+      -#     .show-main__item-box__comment-box__comment-btn
+      -#       - if user_signed_in? && current_user.id 
+      -#         = f.submit "コメントする", class: "comment-btn" do
+      -#           = fa_icon "comment"
+      -#           コメントする
+      -#       - else 
+      -#         ※※※コメントの投稿には新規登録/ログインが必要です※※※
+      -# .show-main__item-box__coment-box__comments
+      -#   %h1 コメント一覧
+      -#   - if @comments
+      -#     .lists_comment
+      -#       - @comments.each do |comment|
+      -#         .lists_comment__list
+      -#           %p.name
+      -#             = comment.user.name 
+      -#           %p.comment
+      -#             = comment.comment   
+      -#             - if user_signed_in? && current_user.id == @products.seller_id
+      -#               = link_to item_comment_path(@products, comment), method: :delete , class: "comment-delete-btn" do
+      -#                 削除
