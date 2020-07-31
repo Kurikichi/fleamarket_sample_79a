@@ -37,6 +37,13 @@ class ProductsController < ApplicationController
   end
   
   def show
+    @seller = @product.seller.name
+    # @grandchild = Category.find(@product.category_id)
+    # @child = @grandchild.parent
+    # @parent = @child.parent
+    # @products = Product.find(params[:id])
+    # @comment = Comment.new
+    # @comments = @products.comments.includes(:user).order(created_at: :desc)
   end
   
 
