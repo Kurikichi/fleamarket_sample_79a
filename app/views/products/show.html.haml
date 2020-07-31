@@ -24,8 +24,8 @@
                 .top-img__sold__inner 
                   SOLD
         .show-main__item-box__item-image__sub-img
-          -# - @products.images.first(10).each do |img|
-          -#   = image_tag "#{img.url}", size:"140x100"
+          - @product.images.first(10).each do |img|
+            = image_tag "#{img.src}", size:"140x100"
           
       .show-main__item-box__item-price
         %p
@@ -41,7 +41,7 @@
               = link_to item_buyers_path(@products) do
                 商品購入
           - else
-            = link_to require_login_path do
+            = link_to root_path do
               ログインがまだな方はこちらからお願いします
 
         .show-main__item-box__item-detail
@@ -52,17 +52,11 @@
           %tr.one
             %th 出品者
             %td
-              = @product.user
+              = @product.seller_id
           %tr.two
-            -# %th カテゴリー
-            -# %td
-            -#   = @parent.name
-            -#   %br
-            -#   >
-            -#   = @child.name
-            -#   %br
-            -#   >>
-            -#   = @grandchild.name
+            %th カテゴリー
+            %td
+              = @product.category_id
               
           %tr.tree
             %th ブランド
