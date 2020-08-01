@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   root 'products#index'
   resources :products, except: :index do
     resource :purchases do
@@ -14,10 +14,8 @@ Rails.application.routes.draw do
   resources :images
   resources :credit_cards, only: [:new, :create, :show, :destroy] do
   end
- 
- 
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+ 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -25,4 +23,5 @@ Rails.application.routes.draw do
     get 'delivery_address', to: 'users/registrations#new_delivery_address'
     post 'delivery_address', to: 'users/registrations#create_delivery_address'
   end
+
 end
