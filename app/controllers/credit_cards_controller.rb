@@ -19,11 +19,7 @@ class CreditCardsController < ApplicationController
         metadata: {user_id: current_user.id}
       )
       @card = CreditCard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save
-         
-      else
-        redirect_to action: "create"
-      end
+      redirect_to action: "create" unless @card.save      
     end
   end
   
@@ -64,11 +60,7 @@ class CreditCardsController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
-      if @card.destroy
-  
-      else
-        redirect_to credit_card_path(current_user.id), alert: "削除できませんでした。"
-      end
+      redirect_to credit_card_path(current_user.id), alert: "削除できませんでした。" unless @card.destroy
     end
   end
   

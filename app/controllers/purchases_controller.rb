@@ -14,10 +14,15 @@ class PurchasesController < ApplicationController
       @user = current_user
       if @user.credit_card.present?
         Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+        
+        begin
+          @customer = Payjp::Customer.retrieve(current_user.card.customer_id)
+        rescue Payjp::PayjpError => e
+          @message = "このカードはご利用になれません。"
+          render :action
+        end
+      
         @card = CreditCard.find_by(user_id: current_user.id)
-       
-       
-       
         charge = Payjp::Charge.create(
           amount: @product.price,
           customer: Payjp::Customer.retrieve(@card.customer_id),
