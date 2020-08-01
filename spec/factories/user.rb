@@ -8,8 +8,8 @@ FactoryBot.define do
     kana_last_name           {"イチロウ"}
     birthday                 {"1999-12-31"}
     email                    {"aaa@aaa.com"}
-    passwrod                 {"1234567"}
-    pssswrod_confirmation    {"1234567"}
+    password                 {"1234567"}
+    # psssword_confirmation    {"1234567"}
   end
 
 end
