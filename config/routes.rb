@@ -12,9 +12,7 @@ Rails.application.routes.draw do
   end
   resources :categories
   resources :images
-  resources :credit_cards, only: [:new, :create, :show, :destroy] do
-  end
-
+  resources :credit_cards, only: [:new, :create, :show, :destroy]
  
   devise_for :users, controllers: {
     registrations: 'users/registrations',

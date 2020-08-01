@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
   require "payjp"
+  before_action :set_product, only: [:buy, :pay]
 
   def  done
     @product_purchaser= Product.find(params[:id])
@@ -7,7 +8,6 @@ class PurchasesController < ApplicationController
   end
     
   def buy
-    @product = Product.find(params[:product_id])
     @images = @product.images.all
 
     if user_signed_in?
@@ -52,9 +52,7 @@ class PurchasesController < ApplicationController
   end
 
   def pay
-    @product = Product.find(params[:product_id])
     @images = @product.images.all
-    
       @product.with_lock do
         if current_user.credit_card.present?
           @card = CreditCard.find_by(user_id: current_user.id)
@@ -73,5 +71,9 @@ class PurchasesController < ApplicationController
         end
         @purchase = Purchase.create(buyer_id: current_user.id, product_id: params[:product_id])        
       end
+  end
+
+  def set_product
+    @product = Product.find(params[:product_id])
   end
 end
