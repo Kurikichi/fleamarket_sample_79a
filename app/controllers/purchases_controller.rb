@@ -4,7 +4,11 @@ class PurchasesController < ApplicationController
 
   def  done
     @product_purchaser= Product.find(params[:id])
-    @product_purchaser.update( purchased: current_user.id)
+    if @product_purchaser.update( purchased: current_user.id)
+      redirect_to root_path
+    else
+      render action: :new
+    end
   end
     
   def buy
@@ -14,14 +18,7 @@ class PurchasesController < ApplicationController
       @user = current_user
       if @user.credit_card.present?
         Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-        
-        begin
-          @customer = Payjp::Customer.retrieve(current_user.card.customer_id)
-        rescue Payjp::PayjpError => e
-          @message = "このカードはご利用になれません。"
-          render :action
-        end
-      
+   
         @card = CreditCard.find_by(user_id: current_user.id)
         charge = Payjp::Charge.create(
           amount: @product.price,
