@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  
   root 'products#index'
-  resources :products, except: :index
+  resources :products, except: :index do
+    resource :purchases do
+      member do
+        get  "buy"
+        post "pay"
+      end
+    end
+  end
   resources :categories
   resources :images
-  resources :users, only: :show
+  resources :credit_cards, only: [:new, :create, :show, :destroy] do
+  end
  
  
 
