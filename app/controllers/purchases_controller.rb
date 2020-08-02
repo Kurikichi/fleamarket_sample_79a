@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   require "payjp"
   before_action :set_product, only: [:buy, :pay]
+  before_action :set_send
 
   def  done
     @product_purchaser= Product.find(params[:id])
@@ -32,17 +33,19 @@ class PurchasesController < ApplicationController
         @card_brand = @customer_card.brand
         case @card_brand
         when "Visa"
-          @card_src = "visa.gif"
+          @card_src = "Visa.svg"
         when "JCB"
-          @card_src = "jcb.gif"
+          @card_src = "JCB.svg.png"
         when "MasterCard"
-          @card_src = "master.png"
+          @card_src = "Master.svg.png"
         when "American Express"
-          @card_src = "amex.gif"
+          @card_src = "amex.svg"
         when "Diners Club"
-          @card_src = "diners.gif"
+          @card_src = "Diners.png"
         when "Discover"
-          @card_src = "discover.gif"
+          @card_src = "discover.png"
+        when "Saison"
+          @card_src = "saison.svg.png"
         end
         @exp_month = @customer_card.exp_month.to_s
         @exp_year = @customer_card.exp_year.to_s.slice(2,3)
@@ -77,5 +80,9 @@ class PurchasesController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def set_send
+    @send_id = DeliveryAddress.where(user_id: current_user.id).first
   end
 end
