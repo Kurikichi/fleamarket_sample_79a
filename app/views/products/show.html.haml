@@ -1,14 +1,5 @@
 .main-header
   = render partial: 'layouts/header'
-  -# %nav.bread-crumbs
-  -#   %ul
-  -#     %li 
-  -#       = link_to root_path do
-  -#         furima
-  -#       = icon('fas','angle-right')
-  -#     %li 
-  -#       - breadcrumb :items_show
-  -#       = breadcrumbs separator: " &rsaquo; "
 
 .main-contents
   .show-main
@@ -29,7 +20,7 @@
           
       .show-main__item-box__item-price
         %p
-          = "#{@product.price}円" 
+          = "¥#{@product.price}" 
         .show-main__item-box__item-price__item-price-detail
           (税込)送料込み
         .show-main__item-box__item-price__item-price-btn
@@ -57,8 +48,7 @@
             %th カテゴリー
             %td
               = @product.category_id
-              
-          %tr.tree
+          %tr.three
             %th ブランド
             %td 
               = @product.brand
@@ -94,33 +84,49 @@
 
         .show-main__item-box__option-area__optional
           =link_to '#', class:"optional" do
-            = fa_icon "flag"
+            = fa_icon "fas, flag"
             不適切な商品の通報
 
-      -# .show-main__item-box__comment-box
-      -#   = form_with(model: [@products, @comment], local: true, id: "new_comment" ) do |f|
-      -#     .show-main__item-box__comment-box__new-comment
-      -#       = f.text_area :comment, class: "new-comment", placeholder: "コメントする"
-      -#     .show-main__item-box__comment-box__explanation
-      -#       %p 相手のことを考え丁寧なコメントを心がけましょう。
-      -#       %p 不快な言葉遣いなどは利用制限や退会処分になることがあります。
-      -#     .show-main__item-box__comment-box__comment-btn
-      -#       - if user_signed_in? && current_user.id 
-      -#         = f.submit "コメントする", class: "comment-btn" do
-      -#           = fa_icon "comment"
-      -#           コメントする
-      -#       - else 
-      -#         ※※※コメントの投稿には新規登録/ログインが必要です※※※
-      -# .show-main__item-box__coment-box__comments
-      -#   %h1 コメント一覧
-      -#   - if @comments
-      -#     .lists_comment
-      -#       - @comments.each do |comment|
-      -#         .lists_comment__list
-      -#           %p.name
-      -#             = comment.user.name 
-      -#           %p.comment
-      -#             = comment.comment   
-      -#             - if user_signed_in? && current_user.id == @products.seller_id
-      -#               = link_to item_comment_path(@products, comment), method: :delete , class: "comment-delete-btn" do
-      -#                 削除
+      .show-main__item-box__links
+      %ul
+        %li
+          = link_to "#" do
+            = fa_icon "angle-left"
+            %span
+            前の商品
+        %li
+          = link_to "#" do
+            %span 後ろの商品
+            = fa_icon "angle-right"
+      .show-main__item-box__relatedItems
+        = link_to "#" do
+          ベビー・キッズをもっと見る
+          .productLists
+            - @products.each do |product|
+            -next if product.id < 5
+              .productList
+                = link_to product_path(product) do
+                  %figure.productList--img
+                    = image_tag "#{product.images[0].src}", class: 'image__brand'
+                      -if product.id == 7
+                      .productList--img__items-sold
+                        .productList--img__items-sold__inner 
+                          SOLD
+                .productList--body
+                  %h3.product--name
+                    = product.name
+                  .details
+                    %ul
+                      %li
+                        = "#{product.price}円" 
+                      %li
+                        %i.fa.fa-star.likeIcon
+                        0
+                    %p
+                      (税込)
+
+
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
+= render partial: 'layouts/display'
