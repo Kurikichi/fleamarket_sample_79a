@@ -88,44 +88,38 @@
             不適切な商品の通報
 
       .show-main__item-box__links
-      %ul
-        %li
-          = link_to "#" do
-            = fa_icon "angle-left"
-            %span
-            前の商品
-        %li
-          = link_to "#" do
-            %span 後ろの商品
-            = fa_icon "angle-right"
+        %ul
+          %li
+            = link_to "#" do
+              = fa_icon "angle-left"
+              %span
+              前の商品
+          %li
+            = link_to "#" do
+              %span 後ろの商品
+              = fa_icon "angle-right"
       .show-main__item-box__relatedItems
         = link_to "#" do
           ベビー・キッズをもっと見る
           .productLists
-            - @products.each do |product|
-            -next if product.id < 5
-              .productList
-                = link_to product_path(product) do
-                  %figure.productList--img
-                    = image_tag "#{product.images[0].src}", class: 'image__brand'
-                      -if product.id == 7
-                      .productList--img__items-sold
-                        .productList--img__items-sold__inner 
-                          SOLD
+          - @product.images.each do |img|
+            = image_tag "test2.png", size:"220x150", class: "top-img"
+            -if @product.buyer_id.present? 
+              .top-img__sold
+                .top-img__sold__inner 
+                  SOLD
                 .productList--body
                   %h3.product--name
-                    = product.name
+                    デコチャリ
                   .details
                     %ul
                       %li
-                        = "#{product.price}円" 
+                        = "19999円" 
                       %li
                         %i.fa.fa-star.likeIcon
                         0
                     %p
                       (税込)
-
-
 
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
