@@ -34,7 +34,7 @@ class CreditCardsController < ApplicationController
       @card_brand = @customer_card.brand
       case @card_brand
       when "Visa"
-        @card_src = "visa.png"
+        @card_src = "Visa.svg"
       when "JCB"
         @card_src = "jcb.png"
       when "MasterCard"

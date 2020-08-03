@@ -1,3 +1,158 @@
-// Place all the styles related to the Credit_cards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//new--------------------------------------------------
+.card_add{
+  background-color: rgb(234, 232, 235);
+}
+.top_logo{
+  background-color: white;
+  text-align: center;
+  height:100px;
+}
+.title{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(234, 232, 235);;
+  padding:40px;
+}
+.main-form{
+  background-color: white;
+  width: 80vw;
+  margin:0 auto;
+  padding:60px 200px;
+  font-size:18px;
+  line-height: 30px;
+  font-weight: bold;
+}
+.must_check{
+  background-color: red;
+  color:white;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 4px;
+  height: 20px;
+  line-height: 20px;
+  
+}
+.number-details{
+  display: flex;
+}
+.expirationdate{
+  margin:20px 0;
+  &__details{
+    display: flex;
+  }
+  &__choice{
+    display: flex;
+  }
+}
+.securitycode{
+  margin:20px 0;
+  &__details{
+    display: flex;
+  }
+}
+.cardnumber{
+  height: 60px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid rgb(56, 56, 56);
+  margin:10px 0;
+}
+.code_form{
+  height: 60px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid rgb(56, 56, 56);
+  margin:10px 0;
+}
+.add__btn{
+  background-color: red;
+  width:300px;
+  height:60px;
+  color:white;
+  border:none;
+  border-radius: 5px;
+}
+
+
+
+// show----------------------------------------------
+.show{
+  &__frame{
+    height:400px;
+    width:70vw;
+    padding:10px;
+    &__title{
+      font-size: 20px;
+      text-align: center;
+      padding:10px;
+    }
+  }
+}
+.credit_card{
+  display: flex;
+  justify-content: space-evenly;
+  &__info{
+    margin:40px;
+    &__brand{
+      margin:10px 0;
+      width: 40vw;
+      height: 200px;
+      border-radius: 10px;
+      border: 2px solid rgb(98, 209, 209);
+      padding:30px;
+    }
+  }
+}
+.destroy_function{
+  background-color: rgb(98, 209, 209);
+  border-radius: 10px;
+  height:40px;
+  line-height: 42px;
+  margin-top: 150px;;
+  &__btn{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+  }
+}
+//create------------------------------------
+.create{
+  text-align: center;
+  &__frame{
+    font-size: 20px;
+    &__message{
+      margin: 40px;
+    }
+  }
+}
+.page_link{
+  background-color: rgb(98, 209, 209);
+  border-radius: 5px;
+  margin-top:50px;
+  width:240px;
+  padding:25px;
+  margin: 0 auto;
+}
+.back_btn{
+  text-decoration: none;
+  color: white;
+}
+//destroy-------------------------------------
+.destroy{
+  text-align: center;
+  &__frame{
+    font-size: 20px;
+    &__message{
+      margin: 40px;
+    }
+  }
+}
+.new_card_page_link{
+  background-color: rgb(98, 209, 209);
+  border-radius: 5px;
+  width:400px;
+  padding:20px;
+  margin: 50px auto;
+}
