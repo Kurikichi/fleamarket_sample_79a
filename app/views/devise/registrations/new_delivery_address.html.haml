@@ -1,0 +1,49 @@
+.main-content
+  .header
+    .header_list
+      = render "layouts/header"
+
+  .main_box
+    .main_box_header
+      %h2 住所情報入力
+    .main_box_content
+      = form_for(@delivery_address, url: delivery_address_path)  do |f|
+        = render "devise/shared/error_messages", resource: @delivery_address
+        .field
+          .field_list
+            = f.label :郵便番号
+            %span 必須
+          %br/
+          = f.text_field :postal_code, {placeholder:"例) 000-1111", class:'input'}
+        .field
+          .field_list
+            = f.label :都道県
+            %span 必須
+          %br/
+          = f.select :prefectures_code, DeliveryAddress.prefectures_codes.keys, {}, { class:'input'}
+        .field
+          .field_list
+            = f.label :市町村
+            %span 必須
+          %br/
+          = f.text_field :city, {placeholder:"例) 名古屋市", class:'input'}
+        .field
+          .field_list
+            = f.label :番地
+            %span 必須
+          %br/
+          = f.text_field :address, {placeholder:"例) 中区１丁目", class:'input'}
+        .field
+          .field_list
+            = f.label :ビル名
+            %span 任意
+          %br/
+          = f.text_field :building_name, {placeholder:"例) 名古屋ビル", class:'input'}
+        .field
+          .field_list
+            = f.label :電話番号
+            %span 必須
+          %br/
+          = f.text_field :phone_number, {placeholder:"例) 080-1111-2222", class:'input'}
+        .actions
+          = f.submit "登録", class: "button"

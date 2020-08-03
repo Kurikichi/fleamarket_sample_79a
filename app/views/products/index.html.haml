@@ -1,7 +1,6 @@
-= link_to '出品', new_product_path
-%br/
-.contents
-  = render @products
+
+
+
 
 .main--toppage
   = render partial: 'layouts/header'
@@ -29,7 +28,7 @@
       %li.list
         .list__pict
           %span.number 1
-          = image_tag '/assets/pict/pict-reason-01.jpg', class: 'pic';
+          = image_tag 'pict-reason-01.jpg', class: 'pic';
         %h3.list__text
           %span.text 3分
           ですぐに出品
@@ -38,7 +37,7 @@
       %li.list
         .list__pict
           %span.number 2
-          = image_tag '/assets/pict/pict-reason-02.jpg', class: 'pic';
+          = image_tag 'pict-reason-02.jpg', class: 'pic';
         %h3.list__text
           %span.text 
             シンプル
@@ -49,7 +48,7 @@
         .list__pict
           %span.number
             3
-          = image_tag '/assets/pict/pict-reason-03.jpg', class: 'pic';
+          = image_tag 'pict-reason-03.jpg', class: 'pic';
         %h3.list__text
           手数料
           %span.text 
@@ -83,21 +82,21 @@
     .items
       %section.item
         %figure.item__img
-          = image_tag '/assets/icon/icon-01.png', class: 'item__img__icon'
+          = image_tag 'icon-01.png', class: 'item__img__icon'
         %h3.item__subtitle
           簡単に売り買いできる
         %p.tem__detail
           スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
       %section.item
         %figure.item__img
-          = image_tag '/assets/icon/icon-03.png', class: 'item__img__icon'
+          = image_tag 'icon-03.png', class: 'item__img__icon'
         %h3.item__subtitle
           売上金は即日振込みに対応
         %p.item__detail
           午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします
       %section.item
         %figure.item__img
-          = image_tag '/assets/icon/icon-04.png', class: 'item__img__icon'
+          = image_tag 'icon-04.png', class: 'item__img__icon'
         %h3.item__subtitle
           様々な支払いに対応
         %p.item__detail
@@ -113,11 +112,17 @@
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].src}", class: 'image__category'
-                  -if product.id == 2
-                  .productList--img__items-sold
-                    .productList--img__items-sold__inner 
-                      SOLD
+
+                - product.images.each do |image|
+                  = image_tag image.src.url,width: "230", height: '150'
+                  = link_to '詳細', product_path(product.id), method: :get       
+                  - if product.id == 2
+                    .productList--img__items-sold                    
+                      .productList--img__items-sold__inner 
+                        SOLD
+
+                
+
             .productList--body
               %h3.product--name
                 = product.name
@@ -132,15 +137,21 @@
                   (税込)
       .productLists
         - @products.each do |product|
-        -next if product.id < 5
+          -break if product.id == 5
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].src}", class: 'image__brand'
-                  -if product.id == 7
-                  .productList--img__items-sold
-                    .productList--img__items-sold__inner 
-                      SOLD
+
+                - product.images.each do |image|
+                  = image_tag image.src.url,width: "230", height: '150'
+                  = link_to '詳細', product_path(product.id), method: :get       
+                  - if product.id == 2
+                    .productList--img__items-sold                    
+                      .productList--img__items-sold__inner 
+                        SOLD
+
+                
+
             .productList--body
               %h3.product--name
                 = product.name
@@ -152,10 +163,8 @@
                     %i.fa.fa-star.likeIcon
                     0
                 %p
+
                   (税込)
-
-
-
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
 = render partial: 'layouts/display'

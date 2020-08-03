@@ -9,7 +9,7 @@
         %span.form-group__require 必須
         %br/
         %span.sub-message クリックで最大10枚まで貼れます。
-      .listring__sell-form
+      .listing__sell-form
         .images-form
           #image-box
             #previews
@@ -47,7 +47,6 @@
             = f.text_field :category_id, class:"form-group__form"
             %br/
             = f.label 'ブランド', class:"form-group__name"
-            %span.form-group__require 必須
             %br/
             = f.text_field :brand, placeholder:"例）シャネル", class:"form-group__form"
             %br/

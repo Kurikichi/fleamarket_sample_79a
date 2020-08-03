@@ -1,0 +1,13 @@
+.card_add 
+  .top_logo
+    = image_tag "logo.png", class:"logo"
+  .title クレジットカード情報入力
+.destroy
+  .destroy__frame
+    .destroy__frame__message
+      削除が完了しました。
+    %ul.destroy__frame__btns
+      %li.new_card_page_link
+        = link_to "クレジットカード再登録", new_credit_card_path, class: "back_btn"
+      %li.page_link
+        = link_to "トップページに戻る", root_path, class:"back_btn"

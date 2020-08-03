@@ -1,0 +1,37 @@
+.buy_header
+  .buy_header__logo
+    = image_tag "logo.png", class:"logo"
+.buy-content
+  .buy-content__main
+    .buy-content__main__title
+      購入が完了しました。
+    .buy-content__main__item
+      .buy-image
+        - @product.images.each do |image|
+          = image_tag image.src.url ,class:"image_preview"
+        .buy-details
+          = "商品名:#{@product.name}"
+          %br
+          = number_to_currency(@product.price,format: "%u%n",unit:"¥",precision: 0)
+          %span.shopping-free (税込)
+
+    .buy-content__main__price-table
+      お支払い金額：
+      = number_to_currency(@product.price,format: "%u%n",unit:"¥",precision: 0)
+      (税込)    
+      .buy-content__main__user-info__adress
+        .buy-content__main__user-info__adress__inner
+          %h3 配送先
+          .address-info
+            = "〒#{@send_id.postal_code}"
+            %br
+            = @send_id.prefectures_code
+            = @send_id.city
+            = @send_id.address
+            = @send_id.building_name
+            .address-info__name
+              氏名：
+              = @user.first_name
+              = "#{@user.last_name} 様"
+      .back__btn
+        = link_to "トップページに戻る", root_path, class: "back-btn"

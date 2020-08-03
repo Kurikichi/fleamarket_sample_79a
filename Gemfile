@@ -60,7 +60,8 @@ group :test do
 end
 
 group :production do
-  gem 'unicorn'
+
+gem 'unicorn', '5.4.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -74,3 +75,7 @@ gem "haml-rails"
 gem 'active_hash'
 gem 'font-awesome-rails'
 gem 'devise'
+
+gem 'fog-aws'
+gem 'payjp'
+

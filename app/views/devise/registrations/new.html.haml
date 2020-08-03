@@ -1,0 +1,58 @@
+.main-content
+  .header
+    .header_list
+      = render "layouts/header"
+
+  .main_box
+    .main_box_header
+      %h2 会員情報入力
+    .main_box_content  
+      = form_for(@user, url: user_registration_path) do |f|
+        = render "devise/shared/error_messages", resource: @user
+        .field
+          .field_list
+            = f.label :ニックネーム
+            %span 必須
+          %br/
+          = f.text_field :nickname, {placeholder:"例) ササ", class:'input'}
+
+        .field
+          .field_list
+            = f.label :名前（全角）
+            %span 必須
+          %br/
+          = f.text_field :first_name, {placeholder:"例) 佐々木", class:'input_list'}
+          = f.text_field :last_name, {placeholder:"例) 一郎", class:'input_list'}
+        .field
+          .field_list
+            = f.label :名前カナ（全角）
+            %span 必須
+          %br/
+          = f.text_field :kana_first_name, {placeholder:"例) ササキ", class:'input_list'}
+          = f.text_field :kana_last_name, {placeholder:"例) イチロウ", class:'input_list'}
+        .field
+          .field_list
+            = f.label :メール
+            %span 必須
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"例) sasaki@gmail.com", class:'input'
+        .field
+          .field_list
+            = f.label :生年月日
+            %span 必須
+          %br/
+          = f.text_field :birthday, {placeholder:"例) 19991231", class:'input'}
+        .field
+          .field_list
+            = f.label :パスワード
+            %span 必須
+          %br/
+          = f.password_field :password,{autocomplete: "new-password",placeholder: "7文字以上",class:'input',id:"password"}
+        .field
+          .field_list
+            = f.label :パスワード（確認）
+            %span 必須
+          %br/
+          = f.password_field :password_confirmation,{autocomplete: "new-password",placeholder: "7文字以上",class:'input',id:"password"}
+        .actions
+          = f.submit "次へ進む", class: "button"
