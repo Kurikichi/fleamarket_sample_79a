@@ -57,6 +57,7 @@ class PurchasesController < ApplicationController
   end
 
   def pay
+    @user = current_user
     @images = @product.images.all
       @product.with_lock do
         if current_user.credit_card.present?
