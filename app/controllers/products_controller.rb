@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, except: [:index, :new, :create]
+  before_action :set_product, only: [:show, :edit, :update]
   before_action :move_to_index, except: [:index, :show]
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -9,6 +9,15 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
+    @categories = Category.where(ancestry: nil).limit(13)
+  end
+
+  def get_category_children
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
 
   def create
@@ -22,12 +31,18 @@ class ProductsController < ApplicationController
 
   def edit
     @produnt = Product.find(params[:id])
+    @grandchild = Category.find(@product.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent
   end
 
   def update
     if @product.update(product_params)
       redirect_to root_path
     else
+      @grandchild = Category.find(@product.category_id)
+      @child = @grandchild.parent
+      @parent = @child.parent
       render :edit
     end
   end
@@ -39,10 +54,10 @@ class ProductsController < ApplicationController
   
   def show
 
-    @produnt = Product.find(params[:id])
+    @product = Product.find(params[:id])
+    
 
   end
-  
 
   private
 
@@ -51,7 +66,7 @@ class ProductsController < ApplicationController
   end
   
   def set_product
-    @product = Product.find(params[:id])
+    @products = Product.find(params[:id])
   end
 
   def move_to_index

@@ -216,3 +216,26 @@
   border: 1px solid rgb(201, 199, 199);
   border-radius: 3px;
 }
+#parent_category{
+  width:63vw;
+  height:45px;
+  border: 1px solid rgb(201, 199, 199);
+  border-radius: 3px;
+}
+
+.fa-chevron-down{
+  display: none;
+}
+
+#child_category{
+  width:63vw;
+  height:45px;
+  border: 1px solid rgb(201, 199, 199);
+  border-radius: 3px;
+}
+#grandchild_category{
+  width:63vw;
+  height:45px;
+  border: 1px solid rgb(201, 199, 199);
+  border-radius: 3px;
+}
