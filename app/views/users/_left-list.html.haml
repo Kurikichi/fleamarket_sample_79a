@@ -1,34 +1,33 @@
 .left-list
-  .my-page
+  .my-page-box
     %p マイページ
-    %ul.my-page-list
+    %ul.category-list
       %li
-        .list-info
+        .list-item
           = link_to new_product_path do
             出品する
       %li
-        .list-info
+        .list-item
           = link_to "#" do
             出品した商品
       %li
-        .list-info
+        .list-item
           = link_to "#" do
             購入した商品
       %li
-        .list-info
+        .list-item
           = link_to "#" do
             お問い合わせ
       %li
-        .list-info
+        .list-item
           = link_to "#" do
             お知らせ
-    %p 設定
-    %lu.setting-list
-      %li.list-setting
-        .list-setting_info
-          = link_to "#" do
+    %h1 設定
+    .setting-list
+      .list-setting
+        .list-setting_item
+          = link_to new_credit_card_path (current_user) do
             クレジットカード
-      %li.list-setting
-        .list-setting_info
-          = link_to edit_user_path("#") do
-            ログアウト
+      .list-setting
+        = link_to edit_user_path (current_user) do
+          ログアウト
