@@ -104,23 +104,23 @@
 
   %section.pickupContainer
     %h2.head
-      新規投稿商品
+      ピックアップカテゴリー
     .productBox
+      .productHead
+        = link_to '#' do
+          %h3.title
+            新規投稿商品
       .productLists
         - @products.each do |product|
           -break if product.id == 5
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                - product.images.each do |image|
-                  = image_tag image.src.url,width: "230", height: '150'
-                  = link_to '詳細', product_path(product.id), method: :get       
-                  - if product.id == 2
-                    .productList--img__items-sold                    
-                      .productList--img__items-sold__inner 
-                        SOLD
-
-                
+                = image_tag "#{product.images[0].src}", class: 'image__category'
+                  -if product.id == 2
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
             .productList--body
               %h3.product--name
                 = product.name
@@ -133,21 +133,26 @@
                     0
                 %p
                   (税込)
+
+  %section.pickupContainer
+    %h2.head
+      ピックアップブランド
+    .productBox
+      .productHead
+        = link_to '#' do
+          %h3.title
+            新規投稿商品
       .productLists
         - @products.each do |product|
-          -break if product.id == 5
+        -next if product.id < 5
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                - product.images.each do |image|
-                  = image_tag image.src.url,width: "230", height: '150'
-                  = link_to '詳細', product_path(product.id), method: :get       
-                  - if product.id == 2
-                    .productList--img__items-sold                    
-                      .productList--img__items-sold__inner 
-                        SOLD
-
-                
+                = image_tag "#{product.images[0].src}", class: 'image__brand'
+                  -if product.id == 7
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
             .productList--body
               %h3.product--name
                 = product.name
@@ -159,7 +164,6 @@
                     %i.fa.fa-star.likeIcon
                     0
                 %p
-
                   (税込)
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
