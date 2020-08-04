@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_08_01_002301) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -41,14 +40,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_002301) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "category_name", null: false
-    t.string "ancestry", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "src"
     t.bigint "product_id"
@@ -68,7 +59,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_002301) do
     t.integer "shipping_charges", null: false
     t.string "shipping_origin", null: false
     t.integer "days_until_shipping", null: false
-
     t.bigint "seller_id"
     t.bigint "buyer_id"
     t.datetime "created_at", precision: 6, null: false
@@ -77,12 +67,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_002301) do
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
-
-
-
-
-
-
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -109,9 +93,8 @@ ActiveRecord::Schema.define(version: 2020_08_01_002301) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "products", "users", column: "buyer_id"
-  add_foreign_key "products", "users", column: "seller_id"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "images", "products"
-
+  add_foreign_key "products", "users", column: "buyer_id"
+  add_foreign_key "products", "users", column: "seller_id"
 end
