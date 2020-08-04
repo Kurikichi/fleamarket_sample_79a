@@ -75,5 +75,7 @@ gem "haml-rails"
 gem 'active_hash'
 gem 'font-awesome-rails'
 gem 'devise'
+
 gem 'fog-aws'
 gem 'payjp'
+

@@ -38,7 +38,9 @@ class ProductsController < ApplicationController
   end
   
   def show
+
     @produnt = Product.find(params[:id])
+
   end
   
 

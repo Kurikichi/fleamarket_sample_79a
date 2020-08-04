@@ -59,9 +59,13 @@ ActiveRecord::Schema.define(version: 2020_08_01_002301) do
     t.integer "shipping_charges", null: false
     t.string "shipping_origin", null: false
     t.integer "days_until_shipping", null: false
+    t.bigint "seller_id"
+    t.bigint "buyer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "exhibition_status"
+    t.index ["buyer_id"], name: "index_products_on_buyer_id"
+    t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -91,4 +95,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_002301) do
 
   add_foreign_key "credit_cards", "users"
   add_foreign_key "images", "products"
+  add_foreign_key "products", "users", column: "buyer_id"
+  add_foreign_key "products", "users", column: "seller_id"
 end

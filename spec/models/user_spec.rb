@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 
+
 describe User do
   describe '#create' do
 
@@ -151,4 +152,5 @@ describe User do
       expect(user.errors[:password]).to include("は7文字以上で入力してください")
     end
   end
+
 end

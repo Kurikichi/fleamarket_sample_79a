@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   validates :nickname, :birthday ,presence: true
   has_many :products
   has_one :delivery_address
@@ -36,4 +37,5 @@ class User < ApplicationRecord
   }, presence: true
 
 end
+
 
