@@ -112,6 +112,7 @@
           .productList
             = link_to product_path(product) do
               %figure.productList--img
+
                 - product.images.each do |image|
                   = image_tag image.src.url,width: "230", height: '150'
                   = link_to '詳細', product_path(product.id), method: :get       
@@ -121,6 +122,7 @@
                         SOLD
 
                 
+
             .productList--body
               %h3.product--name
                 = product.name
@@ -139,6 +141,7 @@
           .productList
             = link_to product_path(product) do
               %figure.productList--img
+
                 - product.images.each do |image|
                   = image_tag image.src.url,width: "230", height: '150'
                   = link_to '詳細', product_path(product.id), method: :get       
@@ -148,6 +151,7 @@
                         SOLD
 
                 
+
             .productList--body
               %h3.product--name
                 = product.name

@@ -11,8 +11,11 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.integer :shipping_charges, null: false
       t.string :shipping_origin, null: false
       t.integer :days_until_shipping, null: false
-
+      t.references :seller
+      t.references :buyer
       t.timestamps
     end
+    add_foreign_key :products, :users, column: :seller_id
+    add_foreign_key :products, :users, column: :buyer_id
   end
 end
