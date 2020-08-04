@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'products#index'
   resources :products, except: :index do
     resource :purchases do
@@ -13,7 +12,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :images
   resources :credit_cards, only: [:new, :create, :show, :destroy]
- 
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }

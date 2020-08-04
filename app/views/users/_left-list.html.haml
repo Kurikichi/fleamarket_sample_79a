@@ -1,0 +1,34 @@
+.left-list
+  .my-page
+    %p マイページ
+    %ul.my-page-list
+      %li
+        .list-info
+          = link_to new_product_path do
+            出品する
+      %li
+        .list-info
+          = link_to "#" do
+            出品した商品
+      %li
+        .list-info
+          = link_to "#" do
+            購入した商品
+      %li
+        .list-info
+          = link_to "#" do
+            お問い合わせ
+      %li
+        .list-info
+          = link_to "#" do
+            お知らせ
+    %p 設定
+    %lu.setting-list
+      %li.list-setting
+        .list-setting_info
+          = link_to "#" do
+            クレジットカード
+      %li.list-setting
+        .list-setting_info
+          = link_to edit_user_path("#") do
+            ログアウト

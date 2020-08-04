@@ -1,0 +1,13 @@
+.content-edit
+  .header-edit
+    .head
+      = render "layouts/header"
+  .edit-main
+    .logo-box
+      .sign-out
+        .sign-out_box
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logo-out"
+    = render partial: 'left-list'
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
+= render partial: 'layouts/display'
