@@ -33,10 +33,10 @@
                   売り切れました
               - elsif user_signed_in?
                 - unless current_user.id == @products.seller_id
-                  = link_to item_buyers_path(@products) do
+                  = link_to product_purchases_path(@products) do
                     商品購入
               - else
-                = link_to require_login_items_path do
+                = link_to require_login_products_path do
                   ログインがまだな方はこちらからお願いします
 
             .show-main__contentright__top-content__item-box__item-detail
