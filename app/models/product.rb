@@ -4,8 +4,11 @@ class Product < ApplicationRecord
   
   belongs_to_active_hash :prefecture
   has_many :images, dependent: :destroy
-  belongs_to :user
-  # belongs_to :category
+  belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+  belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
+  belongs_to :category
+  belongs_to :user, foreign_key: 'user-id', optional: true
+
   accepts_nested_attributes_for :images, allow_destroy: true
 
   enum status: {
