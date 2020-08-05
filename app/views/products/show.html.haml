@@ -14,7 +14,7 @@
             .show-main__contentright__top-content__item-box__item-image__main-img
               - @product.images.first(1).each do |img|
                 = image_tag "#{img.src}", size:"400x350", class: "top-img"
-                -if @product.buyer_id.present? 
+                -# -if @product.buyer_id.present? 
                   .top-img__sold
                     .top-img__sold__inner 
                       SOLD
@@ -28,7 +28,7 @@
             .show-main__contentright__top-content__item-box__item-price__item-price-detail
               (税込)送料込み
             .show-main__contentright__top-content__item-box__item-price__item-price-btn
-              - if @product.buyer_id.present?
+              -# - if @product.buyer_id.present?
                 = link_to root_path do
                   売り切れました
               - elsif user_signed_in?
@@ -47,7 +47,7 @@
               %tr.one
                 %th 出品者
                 %td
-                  = @product.seller_id
+                  -# = @product.seller_id
               %tr.two
                 %th カテゴリー
                 %td
@@ -80,10 +80,10 @@
                 = fa_icon "thumbs-up"
                 お気に入り
             .show-main__contentright__top-content__item-box__option-area__seller-area
-              - if user_signed_in? && current_user.id == @products.seller_id
-                = link_to edit_item_path(@products), class: "edit__btn" do
+              - if user_signed_in? && current_user.id 
+                = link_to edit_product_path(@product), class: "edit__btn" do
                   編集
-                = link_to item_path(@products), method: :delete, class: "delete__btn" do
+                = link_to product_path(@product), method: :delete, class: "delete__btn" do
                   削除
 
             .show-main__contentright__top-content__item-box__option-area__optional

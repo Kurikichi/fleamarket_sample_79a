@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
-    @categories = Category.where(ancestry: nil).limit(13)
+    @category = Category.where(ancestry: nil).limit(13)
   end
 
   def get_category_children
@@ -30,24 +30,22 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @produnt = Product.find(params[:id])
-    @grandchild = Category.find(@product.category_id)
-    @child = @grandchild.parent
-    @parent = @child.parent
+    @product = Product.find(params[:id])
+    @categories = Category.where(ancestry: nil).limit(13)
+
   end
 
   def update
     if @product.update(product_params)
       redirect_to root_path
     else
-      @grandchild = Category.find(@product.category_id)
-      @child = @grandchild.parent
-      @parent = @child.parent
+      
       render :edit
     end
   end
 
   def destroy
+    @product = Product.find(params[:id])
     @product.destroy
     redirect_to root_path
   end
@@ -62,11 +60,11 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :explanation, :brand, :status, :shipping_charges, :shipping_origin, :days_until_shipping, :category_id, images_attributes:  [:src, :_destroy, :id]).merge(exhibition_status: 1, user_id: current_user.id)
+    params.require(:product).permit(:user_id, :name, :price, :explanation, :brand, :status, :shipping_charges, :shipping_origin, :days_until_shipping, :category_id,:seller_id,:buyer_id, images_attributes:  [:src, :_destroy, :id,:image]).merge(exhibition_status: 1, user_id: current_user.id)
   end
   
   def set_product
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def move_to_index
