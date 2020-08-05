@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'products#index'
   resources :products, only: [:new, :show, :create, :edit, :update, :destroy] do 
     collection do
@@ -17,7 +16,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :images
   resources :credit_cards, only: [:new, :create, :show, :destroy]
- 
+
+  resources :users, only: [:index, :edit]
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }

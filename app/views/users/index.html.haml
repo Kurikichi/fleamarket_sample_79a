@@ -1,9 +1,39 @@
-%h1 トップページ
-- if user_signed_in?
-  %h2 ログインしています
-  = link_to "ログアウト", destroy_user_session_path, method: :delete
-  = link_to "マイページ", new_user_session_path
-- else
-  %h2 ログインしていません
-  = link_to "新規登録", new_user_registration_path
-  = link_to "ログイン", new_user_session_path
+.content-my-page
+  .header-list
+    = render partial: 'layouts/header'
+
+  .users-main
+    .rigth_content
+      .name-box
+        .imge-box
+          %image_tag{width: "60", height: "60", src: "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "icon"}
+        .content
+          %p 
+            = current_user.nickname
+      .tabs
+        %input#tab-1{checked: "checked", name: "tab-radio", type: "radio"}/
+        %label.tab-label{for: "tab-1"} やることリスト
+        %input#tab-2{name: "tab-radio", type: "radio"}/
+        %label.tab-label{for: "tab-2"} お知らせ
+        .tab-content.tab-1-content
+          やることリストです。
+        .tab-content.tab-2-content
+          お知らせの商品がありません。
+
+      .buy-box
+        .buy-box_name
+          購入した商品
+        .tabs02
+          %input#tab02-1{checked: "checked", name: "tab-radio", type: "radio"}/
+          %label.tab02-label{for: "tab02-1"} 取引
+          %input#tab02-2{name: "tab-radio", type: "radio"}/
+          %label.tab02-label{for: "tab02-2"} 過去の取引
+          .tab-content.tab02-1-content
+            取引商品がありません。
+          .tab-content.tab02-2-content
+            過去に取引した商品がありません。
+
+    = render partial: 'left-list'
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
+= render partial: 'layouts/display'
