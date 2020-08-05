@@ -1,65 +1,73 @@
-
 .main-header
   = render partial: 'layouts/header'
 
 .main-contents
-  .show-main
-    .show-main__contentleft
-    .show-main__contentright
-      .show-main__contentright__top-content
-        .show-main__contentright__top-content__item-box
-          .show-main__contentright__top-content__item-box__item-name
+  .main-contents__show-main
+    .main-contents__show-main__contentleft
+    .main-contents__show-main__contentright
+      .main-contents__show-main__contentright__top-content
+        .main-contents__show-main__contentright__top-content__item-box
+          .main-contents__show-main__contentright__top-content__item-box__item-name
             = @product.name
-          .show-main__contentright__top-content__item-box__item-image
-            .show-main__contentright__top-content__item-box__item-image__main-img
-              - @product.images.first(1).each do |img|
-                = image_tag "#{img.src}", size:"400x350", class: "top-img"
-                -if @product.buyer_id.present? 
-                  .top-img__sold
-                    .top-img__sold__inner 
-                      SOLD
-            .show-main__contentright__top-content__item-box__item-image__sub-img
-              - @product.images.first(10).each do |img|
-                = image_tag "#{img.src}", size:"140x100"
-              
-          .show-main__contentright__top-content__item-box__item-price
+          .main-contents__show-main__contentright__top-content__item-box__item-image
+            %ul
+              %li
+                - @product.images.first(1).each do |img|
+                  = image_tag "#{img.src}"
+                  -if @product.buyer_id.present? 
+                    .top-img__sold
+                      .top-img__sold__inner 
+                        SOLD
+                  %ul
+                    - @product.images.first(10).each do |img|
+                      %li
+                        = image_tag "#{img.src}"
+                  
+          .main-contents__show-main__contentright__top-content__item-box__item-price
             %p
               = "¥#{@product.price}" 
-            .show-main__contentright__top-content__item-box__item-price__item-price-detail
+            .main-contents__show-main__contentright__top-content__item-box__item-price__item-price-detail
               (税込)送料込み
-            .show-main__contentright__top-content__item-box__item-price__item-price-btn
+            .main-contents__show-main__contentright__top-content__item-box__item-price__item-price-btn
               - if @product.buyer_id.present?
                 = link_to root_path do
                   売り切れました
               - elsif user_signed_in?
-                - unless current_user.id == @products.seller_id
-                  = link_to product_purchases_path(@products) do
+                - unless current_user.id == @product.user_id
+                  = link_to buy_product_purchases_path(@products) do
                     商品購入
               - else
                 = link_to require_login_products_path do
                   ログインがまだな方はこちらからお願いします
 
-            .show-main__contentright__top-content__item-box__item-detail
+            .main-contents__show-main__contentright__top-content__item-box__item-detail
               = @product.explanation
 
-          .show-main__contentright__top-content__item-box__item-table
+          .main-contents__show-main__contentright__top-content__item-box__item-table
             %table
               %tr.one
                 %th 出品者
-                %td
-                  = @product.seller_id
+                %td 
+                  テスト
+                  -# = @product.user_id
               %tr.two
                 %th カテゴリー
                 %td
-                  = @product.category_id
+                  おもちゃ・ホビー・グッズ
+                  %br
+                  おもちゃ
+                  %br
+                  ホビーラジコン
               %tr.three
                 %th ブランド
                 %td 
+                  タミヤ
                   = @product.brand
               %tr.one
                 %th 商品の状態
                 %td 
-                  = @product.status
+                  新品、未使用
+                  -# = @product.status
               %tr.one
                 %th 配送料の負担
                 %td
@@ -67,65 +75,66 @@
               %tr.one
                 %th 発送元の地域
                 %td 
-                  = @product.shipping_origin
+                  北海道
+                  -# = @product.shipping_origin
               %tr.one
                 %th 発送日の目安
                 %td 
                   = @product.days_until_shipping
 
 
-          .show-main__contentright__top-content__item-box__option-area
-            .show-main__contentright__top-content__item-box__option-area__like-btn
+          .main-contents__show-main__contentright__top-content__item-box__option-area
+            .main-contents__show-main__contentright__top-content__item-box__option-area__like-btn
               = button_tag type: 'button', class: "like-btn" do
                 = fa_icon "thumbs-up"
                 お気に入り
-            .show-main__contentright__top-content__item-box__option-area__seller-area
-              - if user_signed_in? && current_user.id == @products.seller_id
+            .main-contents__show-main__contentright__top-content__item-box__option-area__seller-area
+              - if user_signed_in? && current_user.id == @product.seller_id
                 = link_to edit_item_path(@products), class: "edit__btn" do
                   編集
                 = link_to item_path(@products), method: :delete, class: "delete__btn" do
                   削除
 
-            .show-main__contentright__top-content__item-box__option-area__optional
+            .main-contents__show-main__contentright__top-content__item-box__option-area__optional
               =link_to '#', class:"optional" do
                 = fa_icon "fas, flag"
                 不適切な商品の通報
 
-          .show-main__contentright__top-content__item-box__links
-            %ul
-              %li
-                = link_to "#" do
-                  = fa_icon "angle-left"
-                  %span
-                  前の商品
-              %li
-                = link_to "#" do
-                  %span 後ろの商品
-                  = fa_icon "angle-right"
-          .show-main__contentright__top-content__item-box__relatedItems
+      .main-contents__show-main__contentright__links
+        %ul
+          %li
             = link_to "#" do
-              ベビー・キッズをもっと見る
-              .productLists
-                .productList
-                  = link_to "#" do
-                    %figure.productList--img
-                      = image_tag "test2.png"
-                        -if @product.id == 2
-                        .productList--img__items-sold
-                          .productList--img__items-sold__inner 
-                            SOLD
-                  .productList--body
-                    %h3.product--name
-                      = @product.name
-                    .details
-                      %ul
-                        %li
-                          = "#{@product.price}円" 
-                        %li
-                          %i.fa.fa-star.likeIcon
-                          0
-                      %p
-                        (税込)
+              = fa_icon "angle-left"
+              %span
+              前の商品
+          %li
+            = link_to "#" do
+              %span 後ろの商品
+              = fa_icon "angle-right"
+      .main-contents__show-main__contentright__relatedItems
+        = link_to "#" do
+          ベビー・キッズをもっと見る
+      .main-contents__show-main__contentright__relatedItems__productLists
+        .main-contents__show-main__contentright__relatedItems__productLists__productList
+          = link_to "#" do
+            %figure.productList--img
+              = image_tag "test2.png"
+                -if @product.id == 2
+                .productList--img__items-sold
+                  .productList--img__items-sold__inner 
+                    SOLD
+            .main-contents__show-main__contentright__relatedItems__productLists__productList__body
+              %h3.product--name
+                デコチャリ
+              .details
+                %ul
+                  %li
+                    = "#{@product.price}円" 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
 
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
