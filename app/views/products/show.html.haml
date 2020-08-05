@@ -1,4 +1,3 @@
-
 .main-header
   = render partial: 'layouts/header'
 
@@ -11,17 +10,19 @@
           .main-contents__show-main__contentright__top-content__item-box__item-name
             = @product.name
           .main-contents__show-main__contentright__top-content__item-box__item-image
-            .main-contents__show-main__contentright__top-content__item-box__item-image__main-img
-              - @product.images.first(1).each do |img|
-                = image_tag "#{img.src}", size:"400x350", class: "top-img"
-                -# -if @product.buyer_id.present? 
-                  .top-img__sold
-                    .top-img__sold__inner 
-                      SOLD
-            .main-contents__show-main__contentright__top-content__item-box__item-image__sub-img
-              - @product.images.first(10).each do |img|
-                = image_tag "#{img.src}", size:"140x100"
-              
+            %ul
+              %li
+                - @product.images.first(1).each do |img|
+                  = image_tag "#{img.src}"
+                  -if @product.buyer_id.present? 
+                    .top-img__sold
+                      .top-img__sold__inner 
+                        SOLD
+                  %ul
+                    - @product.images.first(10).each do |img|
+                      %li
+                        = image_tag "#{img.src}"
+                  
           .main-contents__show-main__contentright__top-content__item-box__item-price
             %p
               = "¥#{@product.price}" 
@@ -36,7 +37,7 @@
                   = link_to buy_product_purchases_path(@product) do
                     商品購入
               - else
-                = link_to require_login_items_path do
+                = link_to require_login_products_path do
                   ログインがまだな方はこちらからお願いします
 
             .main-contents__show-main__contentright__top-content__item-box__item-detail
@@ -46,26 +47,27 @@
             %table
               %tr.one
                 %th 出品者
-                %td
-                  = @product.user_id
+                %td 
+                  テスト
+                  -# = @product.user_id
               %tr.two
                 %th カテゴリー
                 %td
-                -#   = @parent.name
-                -#   %br
-                -#   >
-                -#   = @child.name
-                -#   %br
-                -#   >>
-                -#   = @grandchild.name
+                  おもちゃ・ホビー・グッズ
+                  %br
+                  おもちゃ
+                  %br
+                  ホビーラジコン
               %tr.three
                 %th ブランド
                 %td 
+                  タミヤ
                   = @product.brand
               %tr.one
                 %th 商品の状態
                 %td 
-                  = @product.status
+                  新品、未使用
+                  -# = @product.status
               %tr.one
                 %th 配送料の負担
                 %td
@@ -73,7 +75,8 @@
               %tr.one
                 %th 発送元の地域
                 %td 
-                  = @product.shipping_origin
+                  北海道
+                  -# = @product.shipping_origin
               %tr.one
                 %th 発送日の目安
                 %td 
@@ -111,27 +114,27 @@
       .main-contents__show-main__contentright__relatedItems
         = link_to "#" do
           ベビー・キッズをもっと見る
-        .main-contents__show-main__contentright__relatedItems__productLists
-          .main-contents__show-main__contentright__relatedItems__productLists__productList
-            = link_to "#" do
-              %figure.productList--img
-                = image_tag "test2.png"
-                  -if @product.id == 2
-                  .productList--img__items-sold
-                    .productList--img__items-sold__inner 
-                      SOLD
-              .main-contents__show-main__contentright__relatedItems__productLists__productList__body
-                %h3.main-contents__show-main__contentright__relatedItems__productLists__productList__body__product--name
-                  = @product.name
-                .main-contents__show-main__contentright__relatedItems__productLists__productList__body__details
-                  %ul
-                    %li
-                      = "#{@product.price}円" 
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      0
-                  %p
-                    (税込)
+      .main-contents__show-main__contentright__relatedItems__productLists
+        .main-contents__show-main__contentright__relatedItems__productLists__productList
+          = link_to "#" do
+            %figure.productList--img
+              = image_tag "test2.png"
+                -if @product.id == 2
+                .productList--img__items-sold
+                  .productList--img__items-sold__inner 
+                    SOLD
+            .main-contents__show-main__contentright__relatedItems__productLists__productList__body
+              %h3.product--name
+                デコチャリ
+              .details
+                %ul
+                  %li
+                    = "#{@product.price}円" 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
 
 -# = render partial: 'layouts/appBanner'
 -# = render partial: 'layouts/footer'
