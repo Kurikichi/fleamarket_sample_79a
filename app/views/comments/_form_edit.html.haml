@@ -1,0 +1,9 @@
+.edit-comment-form
+  - if user_signed_in?
+    = form_with(model: [@product, @comment]) do |form|
+      .edit-comment-form__text_area 
+      = form.text_area :text, class: 'textarea', placeholder:"コメントはこちらへ書き込んでください"
+      .edit-comment-form__submit-btn
+      = form.submit value: "編集する",class: 'edit-submit-btn'
+  - else
+    コメントの投稿にはログインが必要です。

@@ -6,17 +6,17 @@ Rails.application.routes.draw do
       get 'category/get_category_children', to: 'products#get_category_children', defaults: { format: 'json' }
       get 'category/get_category_grandchildren', to: 'products#get_category_grandchildren', defaults: { format: 'json' }
     end
-    resource :purchases do
+    resources :purchases do
       member do
         get  "buy"
         post "pay"
       end
     end
+    resources :comments, only: [:create,:edit,:destroy, :update]
   end
   resources :categories
   resources :images
-  resources :credit_cards, only: [:new, :create, :show, :destroy]
-
+  resources :credit_cards, only: [:new, :create, :show, :destroy]  
   resources :users, only: [:index, :edit]
   
   devise_for :users, controllers: {
