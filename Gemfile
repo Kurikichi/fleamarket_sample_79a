@@ -79,3 +79,5 @@ gem 'devise'
 gem 'fog-aws'
 gem 'payjp'
 
+gem 'ancestry'
+
