@@ -1,6 +1,6 @@
+.main--toppage
+  = render partial: 'layouts/header'
 .buy_header
-  .buy_header__logo
-    = image_tag "logo.png", class:"logo"
 .buy-content
   .buy-content__main
     .buy-content__main__title
@@ -57,3 +57,5 @@
         ※  購入にはクレジットカードの登録が必要です。
         %br
         =link_to "クレジットカードを登録する",new_credit_card_path,class: "entry-btn"
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
