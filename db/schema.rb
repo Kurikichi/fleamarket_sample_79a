@@ -10,11 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_235730) do
+ActiveRecord::Schema.define(version: 2020_08_03_124132) do
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "category_name"
-    t.string "ancestry"
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "category_name", null: false
+    t.string "ancestry", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+  end
+
+  create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
+  create_table "delivery_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "postal_code", null: false
+    t.integer "prefectures_code", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "building_name"
+    t.string "phone_number"
+>>>>>>> Stashed changes
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,8 +51,20 @@ ActiveRecord::Schema.define(version: 2020_07_28_235730) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+
     t.string "name"
     t.integer "price"
+
+    t.integer "category_id", null: false
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.text "explanation", null: false
+    t.integer "price", null: false
+    t.string "brand"
+    t.string "status", null: false
+    t.integer "shipping_charges", null: false
+    t.string "shipping_origin", null: false
+    t.integer "days_until_shipping", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "explanation"
@@ -41,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_235730) do
     t.integer "category_id"
     t.integer "user_id"
     t.integer "exhibition_status"
+
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,5 +91,16 @@ ActiveRecord::Schema.define(version: 2020_07_28_235730) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
+
+  create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "buyer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "credit_cards", "users"
+>>>>>>> Stashed changes
   add_foreign_key "images", "products"
 end
