@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_08_05_080452) do
 
+
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "category_name", null: false
+    t.string "ancestry", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "ancestry"
     t.string "name"
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_08_05_080452) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "category_id", null: false
     t.integer "user_id", null: false
     t.string "name", null: false
     t.text "explanation", null: false
@@ -67,15 +70,15 @@ ActiveRecord::Schema.define(version: 2020_08_05_080452) do
     t.integer "shipping_charges", null: false
     t.string "shipping_origin", null: false
     t.integer "days_until_shipping", null: false
-    t.bigint "seller_id"
-    t.bigint "buyer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "exhibition_status"
+
     t.bigint "category_id"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
+
   end
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -105,7 +108,9 @@ ActiveRecord::Schema.define(version: 2020_08_05_080452) do
 
   add_foreign_key "credit_cards", "users"
   add_foreign_key "images", "products"
+
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "seller_id"
+
 end

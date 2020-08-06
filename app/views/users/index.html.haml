@@ -6,9 +6,10 @@
     .rigth_content
       .name-box
         .imge-box
-          %image_tag{width: "60", height: "60", src: "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "icon"}
+          %span
+            = image_tag src = "member_photo_noimage_thumb.png", width: "60", hight: "60"
         .content
-          %p 
+          %p
             = current_user.nickname
       .tabs
         %input#tab-1{checked: "checked", name: "tab-radio", type: "radio"}/

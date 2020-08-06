@@ -15,7 +15,7 @@ class DeliveryAddress < ApplicationRecord
 
   validates :prefectures_code, presence: true
 
-  validates :postal_code, presence: true
+  validates :postal_code, format: {with:/\A\d{7}\z/,message:"数字7桁ハイフンなしで入力して下さい"}, presence: true
 
   validates :city,format: {
     with: /\A[^ -~｡-ﾟ]+\z/,
@@ -27,10 +27,8 @@ class DeliveryAddress < ApplicationRecord
     message: "全角で入力して下さい"
   }, presence: true
 
-  validates :building_name,format: {
-    with: /\A[^ -~｡-ﾟ]+\z/,
-    message: "全角で入力して下さい"
+  validates :phone_number, format: {
+    with: /\A^[0-9]+\z/
   }, presence: true
 
-  validates :phone_number, presence: true
 end
