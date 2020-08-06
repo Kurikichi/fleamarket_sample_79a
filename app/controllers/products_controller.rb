@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
@@ -57,6 +57,10 @@ class ProductsController < ApplicationController
     @comments = @product.comments.includes(:user).order('created_at asc')
     
 
+  end
+
+  def search
+    @products = Product.search(params[:keyword])
   end
 
   private

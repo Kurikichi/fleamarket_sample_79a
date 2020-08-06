@@ -6,12 +6,20 @@ class Product < ApplicationRecord
   has_many :images, dependent: :destroy
   # belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
   # belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
-  belongs_to :category, foreign_key: 'category-id'
+  # belongs_to :category, foreign_key: 'category-id'
   belongs_to :user, foreign_key: 'user-id', optional: true
   has_one :purchase
   has_many :comments, dependent: :destroy
 
   accepts_nested_attributes_for :images, allow_destroy: true
+  
+  def self.search(search)
+    if search
+      Product.where('name LIKE(?) OR explanation LIKE(?) OR price LIKE(?)', "%#{search}%", "%#{search}%","%#{search}%")
+    else
+      Product.all
+    end
+  end
 
   enum status: {
     新品、未使用:1,未使用に近い:2,目立った傷や汚れなし:3,
