@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :products
   has_one :delivery_address
   has_one :credit_card, dependent: :destroy
+  has_one :purchase
+  has_many :comments
 
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

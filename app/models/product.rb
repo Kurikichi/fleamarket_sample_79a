@@ -4,10 +4,12 @@ class Product < ApplicationRecord
   
   belongs_to_active_hash :prefecture
   has_many :images, dependent: :destroy
-  belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
-  belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
-  belongs_to :category
+  # belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+  # belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
+  belongs_to :category, foreign_key: 'category-id'
   belongs_to :user, foreign_key: 'user-id', optional: true
+  has_one :purchase
+  has_many :comments, dependent: :destroy
 
   accepts_nested_attributes_for :images, allow_destroy: true
 
@@ -38,5 +40,8 @@ class Product < ApplicationRecord
   validates :days_until_shipping, presence:true
   validates :category_id, presence:true
   validates :exhibition_status, presence:true
+
+  validates_associated :images
+  validates :images, presence:true
 
 end

@@ -1,7 +1,7 @@
 
+.main--toppage
+  = render partial: 'layouts/header'
 .new_product_page
-  .new_product_page__logo
-    = image_tag "logo.png", class:"logo"
   .product_listing__container
     = form_for @product do |f|
       .listing__head
@@ -39,9 +39,9 @@
             = f.label '商品の説明', class:"form-group__name"
             %span.form-group__require 必須
             %br/
-            = f.text_area :explanation, placeholder:"商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。",value: "", class:"form-group__explanation-form"
+            = f.text_area :explanation, placeholder:"商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class:"form-group__explanation-form"
             %br/
-
+            
             .status_register
               .status_register__status_category_group
                 .status_register__status_category_group__category
@@ -97,5 +97,6 @@
         .border-line
         .attentions
           禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
-      
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
       

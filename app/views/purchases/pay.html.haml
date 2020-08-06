@@ -1,6 +1,6 @@
+.main--toppage
+  = render partial: 'layouts/header'
 .buy_header
-  .buy_header__logo
-    = image_tag "logo.png", class:"logo"
 .buy-content
   .buy-content__main
     .buy-content__main__title
@@ -35,3 +35,5 @@
               = "#{@user.last_name} 様"
       .back__btn
         = link_to "トップページに戻る", root_path, class: "back-btn"
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
