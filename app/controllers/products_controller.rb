@@ -53,6 +53,8 @@ class ProductsController < ApplicationController
   def show
 
     @product = Product.find(params[:id])
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user).order('created_at asc')
     
 
   end

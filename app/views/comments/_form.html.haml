@@ -1,0 +1,13 @@
+.comment-form
+  - if user_signed_in?
+    = form_with(model: [@product, @comment]) do |form|
+      .comment-form__text_area 
+      = form.text_area :text, class: 'textarea', placeholder:"コメントはこちらへ書き込んでください"
+      %p 
+      相手のことを考え丁寧なコメントを心がけましょう。
+      %br
+      不快な言葉遣いなどは利用制限や退会処分になることがあります。
+      .comment-form__submit-btn
+      = form.submit value: "コメントする",class: 'submit-btn'
+  - else
+    コメントの投稿にはログインが必要です。

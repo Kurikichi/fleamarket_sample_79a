@@ -135,8 +135,15 @@
                     0
                 %p
                   (税込)
+.div#comment_form
+  = render "comments/form"
+.div#comment_area
+  = render "comments/comment"
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
+
 
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
 = render partial: 'layouts/display'
-
