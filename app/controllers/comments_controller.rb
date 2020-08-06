@@ -16,12 +16,18 @@ class CommentsController < ApplicationController
   def update
     if @comment.update(comment_params)
         get_all_comments
+    else 
+      flash.now[:alert] = "failed to update"
+      render action: :edit        
     end
   end
 
   def destroy
     if @comment.destroy
         get_all_comments
+    else
+      flash.now[:alert] = "failed to delete"
+      redirect_to :product_path
     end
   end
       
