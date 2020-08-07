@@ -108,16 +108,15 @@
     .productBox
       .productHead
         = link_to '#' do
-          %h3.title
+          %h3
             新規投稿商品
       .productLists
         - @products.each do |product|
-          -break if product.id == 5
           .productList
             = link_to product_path(product) do
               %figure.productList--img
-                = image_tag "#{product.images[0].src}", class: 'image__category'
-                  -if product.id == 2
+                = image_tag "#{product.images[0].src}"
+                  -if product.exhibition_status == "売り切れ"
                   .productList--img__items-sold
                     .productList--img__items-sold__inner 
                       SOLD
@@ -134,37 +133,83 @@
                 %p
                   (税込)
 
-  %section.pickupContainer
+    %section.pickupContainer
     %h2.head
       ピックアップブランド
     .productBox
       .productHead
         = link_to '#' do
-          %h3.title
-            新規投稿商品
+          %h3
+            アーカイバ
       .productLists
-        - @products.each do |product|
-        -next if product.id < 5
-          .productList
-            = link_to product_path(product) do
-              %figure.productList--img
-                = image_tag "#{product.images[0].src}", class: 'image__brand'
-                  -if product.id == 7
-                  .productList--img__items-sold
-                    .productList--img__items-sold__inner 
-                      SOLD
+        .productList
+          = link_to '#' do
+            %figure.productList--img
+              = image_tag 'https://2.bp.blogspot.com/-6eX4a0aKzH0/UVTVHAV0-DI/AAAAAAAAPCc/JP2uDFtSvqk/s1600/saifu_gamaguchi.png'
             .productList--body
               %h3.product--name
-                = product.name
+                財布
               .details
                 %ul
                   %li
-                    = "#{product.price}円" 
+                    1999円
                   %li
                     %i.fa.fa-star.likeIcon
                     0
                 %p
-                  (税込)
+                  (税込み)
+        .productList
+          = link_to '#' do
+            %figure.productList--img
+              = image_tag 'https://1.bp.blogspot.com/-es3RqkZlQ08/XhwqUTI49zI/AAAAAAABW-I/DVw-AFBR3FUKOa9N5ddPQAfTBNoDv3OAACNcBGAsYHQ/s1600/game_gaming_chair.png'
+            .productList--body
+              %h3.product--name
+                ゲーミングチェア
+              .details
+                %ul
+                  %li
+                    19999円
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込み)
+        .productList
+          = link_to '#' do
+            %figure.productList--img
+              = image_tag 'https://1.bp.blogspot.com/-ADpYzJt1pNc/XuXxqaCMa9I/AAAAAAABZhc/641xRs5pDCwctvE8d0m0-uwZ_y71tXlDACNcBGAsYHQ/s1600/display_monitor_tv_broken.png'
+              .productList--img__items-sold
+                .productList--img__items-sold__inner 
+                  SOLD
+            .productList--body
+              %h3.product--name
+                液晶テレビ
+              .details
+                %ul
+                  %li
+                    99999円
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    10
+                %p
+                  (税込み)
+        .productList
+          = link_to '#' do
+            %figure.productList--img
+              = image_tag 'https://4.bp.blogspot.com/-BUV23gGfP_w/VSufNza2AcI/AAAAAAAAs4I/n8GNiQg0mCI/s800/jewelry_diamond_ring_yubiwa.png'
+            .productList--body
+              %h3.product--name
+                指輪
+              .details
+                %ul
+                  %li
+                    999999円
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込み)
+
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
 = render partial: 'layouts/display'
