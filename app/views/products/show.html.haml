@@ -113,7 +113,7 @@
           = link_to "#" do
             %figure.productList--img
               = image_tag "test2.png"
-                - if @product.exhibition_status == "売り切れ"
+                - if @product.exhibition_status.present?
                 .productList--img__items-sold
                   .productList--img__items-sold__inner 
                     SOLD
