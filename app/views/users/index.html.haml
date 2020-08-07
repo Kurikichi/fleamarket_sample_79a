@@ -1,6 +1,9 @@
 .content-my-page
   .header-list
     = render partial: 'layouts/header'
+  .bread-crumbs
+    - breadcrumb :mypage
+    = breadcrumbs separator: " &rsaquo; "
 
   .users-main
     .rigth_content

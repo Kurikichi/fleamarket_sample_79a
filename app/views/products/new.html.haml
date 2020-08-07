@@ -1,6 +1,9 @@
 
 .main--toppage
   = render partial: 'layouts/header'
+.bread-crumbs
+  - breadcrumb :products_new 
+  = breadcrumbs separator: " &rsaquo; "
 .new_product_page
   .product_listing__container
     = form_for @product do |f|

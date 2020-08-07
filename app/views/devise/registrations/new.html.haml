@@ -2,6 +2,9 @@
   .header
     .header_list
       = render "layouts/header"
+    .bread-crumbs
+      - breadcrumb :users_new
+      = breadcrumbs separator: " &rsaquo; "
 
   .main_box
     .main_box_header

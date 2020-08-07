@@ -1,0 +1,18 @@
+.bread-crumbs {
+  height: 40px;
+  background-color: white;
+  padding: 10px 20px;
+  border-top: 1px solid #eee;
+  padding-left: 100px;
+  .breadcrumbs {
+    margin-left: 50px;
+    width: 700px;
+    a{
+      color: black;
+      text-decoration: none;
+    }
+    .current {
+      font-weight: 600;
+    }
+  }
+}

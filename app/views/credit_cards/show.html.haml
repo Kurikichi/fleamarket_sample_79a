@@ -1,3 +1,9 @@
+.contents
+  %header.main-header 
+    = render "layouts/header"
+  .bread-crumbs
+    - breadcrumb :card_show
+    = breadcrumbs separator: " &rsaquo; "
 .show__frame
   .show__frame__title
     登録クレジットカード情報
