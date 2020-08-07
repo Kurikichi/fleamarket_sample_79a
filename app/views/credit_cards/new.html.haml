@@ -1,6 +1,9 @@
 .card_add 
   .top_logo
     = image_tag "logo.png", class:"logo"
+  .bread-crumbs
+    - breadcrumb :card_new
+    = breadcrumbs separator: " &rsaquo; "
   .title クレジットカード情報入力
   = form_tag(credit_cards_path, method: :post, id: "charge-form", class: "details", name: "inputForm") do
     .main-form

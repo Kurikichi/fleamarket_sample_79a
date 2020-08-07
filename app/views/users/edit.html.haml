@@ -2,6 +2,10 @@
   .header-edit
     .head
       = render "layouts/header"
+  .bread-crumbs
+    - breadcrumb :logout
+    = breadcrumbs separator: " &rsaquo; "
+
   .edit-main
     .logo-box
       .sign-out

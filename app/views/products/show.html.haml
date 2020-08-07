@@ -1,6 +1,8 @@
 .main-header
   = render partial: 'layouts/header'
-
+.bread-crumbs
+  - breadcrumb :products_show
+  = breadcrumbs separator: " &rsaquo; "
 .main-contents
   .main-contents__show-main
     .main-contents__show-main__contentleft

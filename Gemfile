@@ -81,3 +81,4 @@ gem 'payjp'
 
 gem 'ancestry'
 
+gem 'gretel'
