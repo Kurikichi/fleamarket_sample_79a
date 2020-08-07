@@ -75,7 +75,8 @@ class PurchasesController < ApplicationController
           currency: 'jpy'
           )
         end
-        @purchase = Purchase.create(buyer_id: current_user.id, product_id: params[:product_id])        
+        @purchases = Purchase.create(buyer_id: current_user.id, product_id: params[:product_id])
+        @product.update(exhibition_status: 2)        
       end
   end
 
