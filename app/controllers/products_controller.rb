@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
@@ -51,12 +51,20 @@ class ProductsController < ApplicationController
   end
   
   def show
-
+    @seller = User.find(@product.user_id)
+    @grandchild = Category.find(@product.category_id)
+    # @child = @grandchild.parent
+    # @parent = @child.parent
+    @prefecture = Prefecture.find(@product.shipping_origin)
     @product = Product.find(params[:id])
     @comment = Comment.new
     @comments = @product.comments.includes(:user).order('created_at asc')
     
 
+  end
+
+  def search
+    @products = Product.search(params[:keyword])
   end
 
   private

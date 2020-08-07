@@ -7,6 +7,7 @@
 .new_product_page
   .product_listing__container
     = form_for @product do |f|
+      = render "layouts/error_products", model: f.object
       .listing__head
         = f.label '出品画像', class:"form-group__name"
         %span.form-group__require 必須

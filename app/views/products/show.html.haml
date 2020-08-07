@@ -16,7 +16,7 @@
               %li
                 - @product.images.first(1).each do |img|
                   = image_tag "#{img.src}"
-                  -if @product.buyer_id.present? 
+                  - if @product.exhibition_status == "売り切れ"
                     .top-img__sold
                       .top-img__sold__inner 
                         SOLD
@@ -31,15 +31,15 @@
             .main-contents__show-main__contentright__top-content__item-box__item-price__item-price-detail
               (税込)送料込み
             .main-contents__show-main__contentright__top-content__item-box__item-price__item-price-btn
-              - if @product.buyer_id.present?
+              - if @product.exhibition_status == "売り切れ"
                 = link_to root_path do
                   売り切れました
               - elsif user_signed_in?
                 - unless current_user.id == @product.user_id
-                  = link_to buy_product_purchases_path(@product) do
+                  = link_to buy_product_purchase_path(@product) do
                     商品購入
               - else
-                = link_to require_login_products_path do
+                = link_to new_user_registration_path do
                   ログインがまだな方はこちらからお願いします
 
             .main-contents__show-main__contentright__top-content__item-box__item-detail
@@ -50,26 +50,22 @@
               %tr.one
                 %th 出品者
                 %td 
-                  テスト
-                  -# = @product.user_id
+                  = @seller.nickname
               %tr.two
                 %th カテゴリー
                 %td
-                  おもちゃ・ホビー・グッズ
-                  %br
-                  おもちゃ
-                  %br
-                  ホビーラジコン
+                  = @grandchild.name
+                  -# %br
+                  -# >
+                  -# = @child
               %tr.three
                 %th ブランド
                 %td 
-                  タミヤ
                   = @product.brand
               %tr.one
                 %th 商品の状態
                 %td 
-                  新品、未使用
-                  -# = @product.status
+                  = @product.status
               %tr.one
                 %th 配送料の負担
                 %td
@@ -77,13 +73,11 @@
               %tr.one
                 %th 発送元の地域
                 %td 
-                  北海道
-                  -# = @product.shipping_origin
+                  = @prefecture.name
               %tr.one
                 %th 発送日の目安
                 %td 
                   = @product.days_until_shipping
-
 
           .main-contents__show-main__contentright__top-content__item-box__option-area
             .main-contents__show-main__contentright__top-content__item-box__option-area__like-btn
@@ -121,7 +115,7 @@
           = link_to "#" do
             %figure.productList--img
               = image_tag "test2.png"
-                -if @product.id == 2
+                - if @product.exhibition_status.present?
                 .productList--img__items-sold
                   .productList--img__items-sold__inner 
                     SOLD
@@ -141,10 +135,6 @@
   = render "comments/form"
 .div#comment_area
   = render "comments/comment"
-
-= render partial: 'layouts/appBanner'
-= render partial: 'layouts/footer'
-
 
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
