@@ -239,35 +239,3 @@
   border: 1px solid rgb(201, 199, 199);
   border-radius: 3px;
 }
-
-// search--------------------------------
-
-.search-productBox{
-  background-color: white;
-  padding:0 50px;
-  display: flex;
-  flex-wrap: wrap;
-  
-}
-.search-productList{
-  display: flex;
-  justify-content: left;
-  width: 300px;
-  background-color:white;
-  border: 1px solid turquoise;
-  border-radius: 10px;
-  text-align: center;
-  margin:20px;
-  &--img{
-    height:200px;
-  }
-}
-.search-product--name{
-  height:40px;
-  font-weight: bold;
-}
-.search-image{
-  width:200px;
-  height:200px;
-  border:1px solid rgb(156, 156, 156);
-}
