@@ -7,12 +7,11 @@
         = link_to product_path(product) do
           %figure.search-productList--img
             - product.images.each do |image|
-              -if product.exhibition_status == "売り切れ"
+              = image_tag "#{product.images[0].src}"
+                -if product.exhibition_status == "売り切れ"
                 .search-productList--img__items-sold
                   .search-productList--img__items-sold__inner 
                     SOLD
-              = image_tag "#{image.src}", class: 'search-image'
-
           .search-productList--body
             .search-product--name
               = product.name
