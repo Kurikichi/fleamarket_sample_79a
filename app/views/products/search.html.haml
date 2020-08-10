@@ -1,17 +1,23 @@
 .main--toppage
   = render partial: 'layouts/header'
 .search-productBox
-  - @products.each do |product|
-    .search-productList
-      = link_to product_path(product) do
-        %figure.search-productList--img
-          - product.images.each do |image|
-            = image_tag "#{image.src}", class: 'search-image'
-        .search-productList--body
-          .search-product--name
-            = product.name
-          .search-details
-            %ul
-              %li
-                = "#{product.price}円(税込)" 
-                %i.fa.fa-star.likeIcon
+  .search-productLists
+    - @products.each do |product|
+      .search-productList
+        = link_to product_path(product) do
+          %figure.search-productList--img
+            - product.images.each do |image|
+              -if product.exhibition_status == "売り切れ"
+                .search-productList--img__items-sold
+                  .search-productList--img__items-sold__inner 
+                    SOLD
+              = image_tag "#{image.src}", class: 'search-image'
+
+          .search-productList--body
+            .search-product--name
+              = product.name
+            .search-details
+              %ul
+                %li
+                  = "#{product.price}円(税込)" 
+                  %i.fa.fa-star.likeIcon
