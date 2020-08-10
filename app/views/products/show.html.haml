@@ -54,10 +54,13 @@
               %tr.two
                 %th カテゴリー
                 %td
+                  = @parent.name
+                  %br
+                  >
+                  = @child.name
+                  %br
+                  >>
                   = @grandchild.name
-                  -# %br
-                  -# >
-                  -# = @child
               %tr.three
                 %th ブランド
                 %td 

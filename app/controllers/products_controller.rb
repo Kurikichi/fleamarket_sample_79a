@@ -53,8 +53,8 @@ class ProductsController < ApplicationController
   def show
     @seller = User.find(@product.user_id)
     @grandchild = Category.find(@product.category_id)
-    # @child = @grandchild.parent
-    # @parent = @child.parent
+    @child = @grandchild.parent
+    @parent = @child.parent
     @prefecture = Prefecture.find(@product.shipping_origin)
     @product = Product.find(params[:id])
     @comment = Comment.new

@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function(){
       childSelectHtml = `<div class='status_register__status_category_groupl__category__choose__added' id= 'children_wrapper'>
                           <div class='status_register__status_category_group__category__choose1'>
                             <i class='fas fa-chevron-down status_register__status_category_group__category__choose--arrow-down'></i>
-                            <select class="status_register__status_category_group__category__choose--select" id="child_category" name="item[category_id]">
+                            <select class="status_register__status_category_group__category__choose--select" id="child_category" name="product[category_id]">
                               <option value="---" data-category="---">---</option>
                               ${insertHTML}
                             <select>
@@ -25,7 +25,7 @@ $(document).on('turbolinks:load', function(){
       grandchildSelectHtml = `<div class='status_register__status_category_group__category__choose__added' id= 'grandchildren_wrapper'>
                                 <div class='status_register__status_category_group__category__choose2'>
                                   <i class='fas fa-chevron-down status_register__status_category_group__category__choose--arrow-down'></i>
-                                  <select class="status_register__status_category_group__category__choose__box--select" id="grandchild_category" name="item[category_id]">
+                                  <select class="status_register__status_category_group__category__choose__box--select" id="grandchild_category" name="product[category_id]">
                                     <option value="---" data-category="---">---</option>
                                     ${insertHTML}
                                   </select>
