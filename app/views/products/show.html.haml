@@ -54,13 +54,14 @@
               %tr.two
                 %th カテゴリー
                 %td
-                  = @parent.name
+                  = link_to '#' do
+                    = @parent.name
                   %br
-                  >
-                  = @child.name
+                  = link_to '#' do
+                    = @child.name
                   %br
-                  >>
-                  = @grandchild.name
+                  = link_to '#' do
+                    = @grandchild.name
               %tr.three
                 %th ブランド
                 %td 
