@@ -77,7 +77,8 @@
               %tr.one
                 %th 発送元の地域
                 %td 
-                  = @prefecture.name
+                  = link_to '#' do
+                    = @prefecture.name
               %tr.one
                 %th 発送日の目安
                 %td 
