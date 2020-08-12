@@ -243,10 +243,10 @@
         }
       }
       .productLists {
-        width: 760px;
+        width: 880px;
         margin: 26px auto;
         display: flex;
-        justify-content: space-around;
+        overflow: scroll;
         a {
           text-decoration: none;
           position: relative;
