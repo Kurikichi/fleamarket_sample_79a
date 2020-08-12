@@ -25,14 +25,20 @@ class ProductsController < ApplicationController
     if params[:product][:images_attributes] && @product.save
       redirect_to root_path
     else
-      render :new
+      if @product.images.new
+        render :new
+      else
+        redirect_to new_product_path
+      end
     end
   end
 
   def edit
     @product = Product.find(params[:id])
     @categories = Category.where(ancestry: nil).limit(13)
-
+    @grandchild = Category.find(@product.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent
   end
 
   def update
@@ -53,8 +59,8 @@ class ProductsController < ApplicationController
   def show
     @seller = User.find(@product.user_id)
     @grandchild = Category.find(@product.category_id)
-    # @child = @grandchild.parent
-    # @parent = @child.parent
+    @child = @grandchild.parent
+    @parent = @child.parent
     @prefecture = Prefecture.find(@product.shipping_origin)
     @product = Product.find(params[:id])
     @comment = Comment.new

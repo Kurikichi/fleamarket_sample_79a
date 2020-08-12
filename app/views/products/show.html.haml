@@ -54,10 +54,14 @@
               %tr.two
                 %th カテゴリー
                 %td
-                  = @grandchild.name
-                  -# %br
-                  -# >
-                  -# = @child
+                  = link_to '#' do
+                    = @parent.name
+                  %br
+                  = link_to '#' do
+                    = @child.name
+                  %br
+                  = link_to '#' do
+                    = @grandchild.name
               %tr.three
                 %th ブランド
                 %td 
@@ -73,7 +77,8 @@
               %tr.one
                 %th 発送元の地域
                 %td 
-                  = @prefecture.name
+                  = link_to '#' do
+                    = @prefecture.name
               %tr.one
                 %th 発送日の目安
                 %td 
@@ -125,7 +130,7 @@
               .details
                 %ul
                   %li
-                    = "#{@product.price}円" 
+                    19999円 
                   %li
                     %i.fa.fa-star.likeIcon
                     0

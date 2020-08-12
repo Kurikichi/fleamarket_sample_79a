@@ -41,7 +41,7 @@ class Product < ApplicationRecord
   
 
   validates :name, presence:true, length: { maximum: 40 }
-  validates :price, presence:true, numericality: { greater_than_or_equal_to: 300 }
+  validates :price, presence:true, numericality: { greater_than_or_equal_to: 300 },numericality: { less_than: 10000000 }
   validates :explanation, presence:true, length: { maximum: 1000 }
   validates :status, presence:true
   validates :shipping_charges, presence:true

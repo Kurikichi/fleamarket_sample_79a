@@ -70,7 +70,12 @@ ActiveRecord::Schema.define(version: 2020_08_06_051457) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "exhibition_status"
     t.bigint "category_id"
+    t.index ["buyer_id"], name: "fk_rails_d14ac84443"
     t.index ["category_id"], name: "index_products_on_category_id"
+
+
+    t.index ["seller_id"], name: "index_products_on_seller_id"
+
   end
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -101,4 +106,8 @@ ActiveRecord::Schema.define(version: 2020_08_06_051457) do
   add_foreign_key "credit_cards", "users"
   add_foreign_key "images", "products"
   add_foreign_key "products", "categories"
+
+  add_foreign_key "products", "users", column: "buyer_id"
+  add_foreign_key "products", "users", column: "seller_id"
+
 end

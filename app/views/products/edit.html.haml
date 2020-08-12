@@ -53,7 +53,11 @@
                     = f.label 'カテゴリー', class:"form-group__name"
                     %span.form-group__require 必須
                   .status_register__status_category_group__category__choose
-                    = f.collection_select :category_id,Category.where(ancestry: nil).limit(13),:id, :name,{prompt: '---'}, {id: 'parent_category'}                    
+                    = f.collection_select :category_id,Category.where(ancestry: nil).limit(13), :id, :name,{prompt: '---', selected: @parent.id}, {id: 'parent_category'}
+                    .status_register__status_category_group__category__choose__edit1
+                      = f.collection_select :category_id,Category.where(ancestry: "#{@parent.id}"), :id, :name,{prompt: '---', selected: @child.id}, {id: 'child_category'}
+                    .status_register__status_category_group__category__choose__edit2
+                      = f.collection_select :category_id,Category.where(ancestry: "#{@parent.id}/#{@child.id}"), :id, :name,{prompt: '---', selected: @grandchild.id}, {id: 'grandchild_category'}
             %br/
             = f.label 'ブランド', class:"form-group__name"
             %br/
