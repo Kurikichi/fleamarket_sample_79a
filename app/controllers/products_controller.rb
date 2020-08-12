@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.new
     @category = Category.where(ancestry: nil).limit(13)
+    
   end
 
   def get_category_children
@@ -22,11 +23,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    
     if params[:product][:images_attributes] && @product.save
       redirect_to root_path
     else
       if @product.images.new
-        render :new
+        if @product.category_id
+          redirect_to new_product_path
+        else
+          render :new
+        end
       else
         redirect_to new_product_path
       end
