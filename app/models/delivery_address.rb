@@ -28,7 +28,7 @@ class DeliveryAddress < ApplicationRecord
   }, presence: true
 
   validates :phone_number, format: {
-    with: /\A^[0-9]+\z/
+    with: /\A\d{11}\z/
   }, presence: true
 
 end
