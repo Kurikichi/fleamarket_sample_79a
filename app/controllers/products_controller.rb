@@ -42,6 +42,11 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
+    @categories = Category.where(ancestry: nil).limit(13)
+    @grandchild = Category.find(@product.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent
     if @product.update(product_params)
       redirect_to root_path
     else
