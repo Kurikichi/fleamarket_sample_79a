@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   end
   resources :categories
   resources :images
+
   resources :credit_cards, only: [:new, :create, :show, :destroy]  
+
   resources :users, only: [:index, :edit]
   
   devise_for :users, controllers: {
@@ -27,5 +29,6 @@ Rails.application.routes.draw do
     get 'delivery_address', to: 'users/registrations#new_delivery_address'
     post 'delivery_address', to: 'users/registrations#create_delivery_address'
   end
+
 
 end

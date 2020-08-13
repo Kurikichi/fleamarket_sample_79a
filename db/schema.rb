@@ -13,20 +13,14 @@
 ActiveRecord::Schema.define(version: 2020_08_06_051457) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+
     t.string "ancestry", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
   end
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "product_id"
-    t.text "text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
+r
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "customer_id", null: false
@@ -44,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_051457) do
     t.string "address", null: false
     t.string "building_name"
     t.string "phone_number"
+<
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -57,18 +52,24 @@ ActiveRecord::Schema.define(version: 2020_08_06_051457) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+
     t.integer "user_id", null: false
     t.string "name", null: false
     t.text "explanation", null: false
     t.integer "price", null: false
     t.string "brand"
+
     t.integer "status", null: false
     t.integer "shipping_charges", null: false
     t.integer "shipping_origin", null: false
+
     t.integer "days_until_shipping", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "exhibition_status"
+
+
+
     t.bigint "category_id"
     t.index ["buyer_id"], name: "fk_rails_d14ac84443"
     t.index ["category_id"], name: "index_products_on_category_id"
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_051457) do
     t.integer "buyer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -103,7 +105,9 @@ ActiveRecord::Schema.define(version: 2020_08_06_051457) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
   add_foreign_key "credit_cards", "users"
+
   add_foreign_key "images", "products"
   add_foreign_key "products", "categories"
 
