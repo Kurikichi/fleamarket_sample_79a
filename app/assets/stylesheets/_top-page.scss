@@ -2,7 +2,7 @@
   .mainVisual {
     background-color: gray;
     height: 560px;
-    background-image: image-url("/assets/pict/bg-mainVisual-pict_pc.jpg");
+    background-image: image-url("bg-mainVisual-pict_pc.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -124,7 +124,7 @@
   }
   
   .topMiddleDl {
-    background-image: image-url("/assets/pict/bg-topMiddleDl-pict.jpg");
+    background-image: image-url("bg-topMiddleDl-pict.jpg");
     background-position: bottom right;
     background-size: cover;
     height: 400px;
@@ -221,7 +221,9 @@
     background-color: #f8f8f8;
     padding: 80px 0 0;
     height: 100%;
-    padding-bottom: 80px;
+    &:last-child {
+      padding-bottom: 80px;
+    }
     .head {
       text-align: center;
       font-size: 28px;
@@ -235,23 +237,26 @@
           font-size: 24px;
           color: #3ccace;
           text-decoration: none;
-          .title {
+          h3 {
             font-weight: bold;
           }
         }
       }
       .productLists {
-        width: 760px;
+        width: 880px;
         margin: 26px auto;
         display: flex;
-        justify-content: space-around;
+        overflow: scroll;
+        a {
+          text-decoration: none;
+          position: relative;
+        }
         .productList {
           width: 220px;
           display: inline-block;
           a {
             display: inline-block;
             background-color: white;
-            text-decoration: none;
             .productList--img {
               width: 220px;
               height: 150px;
@@ -259,6 +264,17 @@
               overflow: hidden;
               margin: 0;
               z-index: auto;
+              img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                z-index: auto;
+                height: 150px;
+                object-fit: cover;
+              }
               &__items-sold{
                 width: 0;
                 height: 0;
@@ -281,28 +297,6 @@
                   letter-spacing: 2px;
                   font-weight: 600;
                 }
-              }
-              .image__category {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                z-index: auto;
-                height: 150px;
-                object-fit: cover;
-              }
-              .image__brand {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                z-index: auto;
-                height: 150px;
-                object-fit: cover;
               }
             }
           }

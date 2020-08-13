@@ -1,0 +1,18 @@
+.comment
+  %h5 コメント一覧
+  - @comments.each do |comment|
+    %div{id: "comment_#{comment.id}"}
+    .comment__area
+      .comment__area__time-name
+        = comment.updated_at.strftime("%Y-%m-%d %H:%M")
+        %span
+          = comment.user.nickname
+      .comment__area__text  
+        = comment.text
+      
+      .list-inline-item
+        - if user_signed_in? && comment.user_id == current_user.id
+          = link_to edit_product_comment_path(comment.product_id, comment.id),remote: true  do
+            %input{type: "submit", value: "編集", class:"edit-btn"}
+          = link_to product_comment_path(comment.product_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' } do
+            %input{type: "submit", value: "削除", class:"delete-btn"}

@@ -1,9 +1,13 @@
 
+.main--toppage
+  = render partial: 'layouts/header'
+.bread-crumbs
+  - breadcrumb :products_edit
+  = breadcrumbs separator: " &rsaquo; "
 .new_product_page
-  .new_product_page__logo
-    = image_tag "logo.png", class:"logo"
   .product_listing__container
     = form_for @product do |f|
+      = render "layouts/error_products", model: f.object
       .listing__head
         = f.label '出品画像', class:"form-group__name"
         %span.form-group__require 必須
@@ -41,10 +45,19 @@
             %br/
             = f.text_area :explanation, placeholder:"商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class:"form-group__explanation-form"
             %br/
-            = f.label 'カテゴリー', class:"form-group__name"
-            %span.form-group__require 必須
-            %br/
-            = f.text_field :category_id, class:"form-group__form"
+
+            .status_register
+              .status_register__status_category_group
+                .status_register__status_category_group__category
+                  .status_register__status_category_group__category__register_title
+                    = f.label 'カテゴリー', class:"form-group__name"
+                    %span.form-group__require 必須
+                  .status_register__status_category_group__category__choose
+                    = f.collection_select :category_id,Category.where(ancestry: nil).limit(13), :id, :name,{prompt: '---', selected: @parent.id}, {id: 'parent_category'}
+                    .status_register__status_category_group__category__choose__edit1
+                      = f.collection_select :category_id,Category.where(ancestry: "#{@parent.id}"), :id, :name,{prompt: '---', selected: @child.id}, {id: 'child_category'}
+                    .status_register__status_category_group__category__choose__edit2
+                      = f.collection_select :category_id,Category.where(ancestry: "#{@parent.id}/#{@child.id}"), :id, :name,{prompt: '---', selected: @grandchild.id}, {id: 'grandchild_category'}
             %br/
             = f.label 'ブランド', class:"form-group__name"
             %br/
@@ -92,5 +105,6 @@
         .border-line
         .attentions
           禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
-      
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
       

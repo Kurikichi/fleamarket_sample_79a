@@ -1,0 +1,25 @@
+.contents
+  %header.main-header 
+    = render "layouts/header"
+  -# .bread-crumbs
+  -#   - breadcrumb :credit_card_show
+  -#   = breadcrumbs separator: " &rsaquo; "
+.show__frame
+  .show__frame__title
+    登録クレジットカード情報
+    .credit_card                  
+      .credit_card__info
+        登録カード一覧 
+        .credit_card__info__brand
+          = image_tag asset_path("card/#{@card_src}"), width: '60', height: '50', alt: @card_brand, id: "card_image"
+          .credit_card__info__numbers
+            .number
+              = "**** **** **** " + @customer_card.last4
+            .expiration_date
+              .expiration_date__title
+              有効期限
+              .expiration_date__info
+                = @exp_month + " / " + @exp_year
+      .destroy_function
+        = link_to credit_card_path, method: :delete, class: "destroy_function__btn" do 
+          削除する

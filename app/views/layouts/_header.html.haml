@@ -3,15 +3,13 @@
     .mainHeader
       %h1.icon
         = link_to root_path do
-          = image_tag ("/assets/logo/logo.png")
+          = image_tag ("logo.png")
       .searchBox
-        %form{"accept-charset" => "UTF-8", :action => "#", :method => "get"}
-          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-          %input#searchInput.searchBox--input{:name => "key", :placeholder => "キーワードから探す"}/
-          %button{:type => "submit"}
+        = form_with(url: search_products_path, local: true, method: :get, class: "form") do |form|
+          = form.text_field :keyword, placeholder: "キーワードから探す", class: "searchBox-input"
+          = button_tag type: 'submit', class: 'search-btn' do
             .searchBox__icon
-              = image_tag ("/assets/icon/icon-search 1.png")
-              %input{:name => "authenticity_token", :type => "hidden", :value => "1pM33Cjt1diHvUyktLAENxrrv1bIFbrlgMe7/f4NpruCrlWfjb7O6KmonDbPVZp+czB9gbFNPwVHPNAdzbhb0w=="}/
+              = image_tag ("icon-search 1.png")
       %ul.resultLists
     .nav
       %ul.left-items
@@ -24,6 +22,9 @@
         - if user_signed_in? 
           %li.right-item1
             = link_to "ログアウト", destroy_user_session_path, method: :delete
+          %li.right-item2
+            = link_to users_path (current_user) do
+              マイページ
         - else      
           %li.right-item1
             = link_to "ログイン", new_user_session_path

@@ -1,45 +1,146 @@
-%p#notice= notice
+.main-header
+  = render partial: 'layouts/header'
+.bread-crumbs
+  - breadcrumb :products_show
+  = breadcrumbs separator: " &rsaquo; "
+.main-contents
+  .main-contents__show-main
+    .main-contents__show-main__contentleft
+    .main-contents__show-main__contentright
+      .main-contents__show-main__contentright__top-content
+        .main-contents__show-main__contentright__top-content__item-box
+          .main-contents__show-main__contentright__top-content__item-box__item-name
+            = @product.name
+          .main-contents__show-main__contentright__top-content__item-box__item-image
+            %ul
+              %li
+                - @product.images.first(1).each do |img|
+                  = image_tag "#{img.src}"
+                  - if @product.exhibition_status == "売り切れ"
+                    .top-img__sold
+                      .top-img__sold__inner 
+                        SOLD
+                  %ul
+                    - @product.images.first(10).each do |img|
+                      %li
+                        = image_tag "#{img.src}"
+                  
+          .main-contents__show-main__contentright__top-content__item-box__item-price
+            %p
+              = "¥#{@product.price}" 
+            .main-contents__show-main__contentright__top-content__item-box__item-price__item-price-detail
+              (税込)送料込み
+            .main-contents__show-main__contentright__top-content__item-box__item-price__item-price-btn
+              - if @product.exhibition_status == "売り切れ"
+                = link_to root_path do
+                  売り切れました
+              - elsif user_signed_in?
+                - unless current_user.id == @product.user_id
+                  = link_to buy_product_purchase_path(@product) do
+                    商品購入
+              - else
+                = link_to new_user_registration_path do
+                  ログインがまだな方はこちらからお願いします
 
-- @product.images.each do |image|
-  = image_tag image.src.url
+            .main-contents__show-main__contentright__top-content__item-box__item-detail
+              = @product.explanation
 
-%p
-  %strong Category:
-  = @product.category_id
-%p
-  %strong User:
-  = @product.user_id
-%p
-  %strong Name:
-  = @product.name
-%p
-  %strong Explanation:
-  = @product.explanation
-%p
-  %strong Price:
-  = @product.price
-%p
-  %strong Brand:
-  = @product.brand
-%p
-  %strong Status:
-  = @product.status
-%p
-  %strong Shipping charges:
-  = @product.shipping_charges
-%p
-  %strong Shipping origin:
-  = @product.shipping_origin
-%p
-  %strong Days until shipping:
-  = @product.days_until_shipping
-= link_to 'Edit', edit_product_path(@product)
-|
-= link_to 'Back', products_path
+          .main-contents__show-main__contentright__top-content__item-box__item-table
+            %table
+              %tr.one
+                %th 出品者
+                %td 
+                  = @seller.nickname
+              %tr.two
+                %th カテゴリー
+                %td
+                  = link_to '#' do
+                    = @parent.name
+                  %br
+                  = link_to '#' do
+                    = @child.name
+                  %br
+                  = link_to '#' do
+                    = @grandchild.name
+              %tr.three
+                %th ブランド
+                %td 
+                  = @product.brand
+              %tr.one
+                %th 商品の状態
+                %td 
+                  = @product.status
+              %tr.one
+                %th 配送料の負担
+                %td
+                  = @product.shipping_charges
+              %tr.one
+                %th 発送元の地域
+                %td 
+                  = link_to '#' do
+                    = @prefecture.name
+              %tr.one
+                %th 発送日の目安
+                %td 
+                  = @product.days_until_shipping
 
+          .main-contents__show-main__contentright__top-content__item-box__option-area
+            .main-contents__show-main__contentright__top-content__item-box__option-area__like-btn
+              = button_tag type: 'button', class: "like-btn" do
+                = fa_icon "thumbs-up"
+                お気に入り
+            .main-contents__show-main__contentright__top-content__item-box__option-area__seller-area
+              - if user_signed_in? && current_user.id == @product.user_id && @product.exhibition_status == "出品中"
+                = link_to edit_product_path(@product), class: "edit__btn" do
+                  編集
+                = link_to product_path(@product), method: :delete, class: "delete__btn" do
+                  削除
 
-- if user_signed_in? && current_user.id == @product.user_id
-  = link_to '編集', edit_product_path(@product)
-  = link_to '削除', product_path(@product), method: :delete
-- else
-  投稿者のみ編集削除ができます
+            .main-contents__show-main__contentright__top-content__item-box__option-area__optional
+              =link_to '#', class:"optional" do
+                = fa_icon "fas, flag"
+                不適切な商品の通報
+
+      .main-contents__show-main__contentright__links
+        %ul
+          %li
+            = link_to "#" do
+              = fa_icon "angle-left"
+              %span
+              前の商品
+          %li
+            = link_to "#" do
+              %span 後ろの商品
+              = fa_icon "angle-right"
+      .main-contents__show-main__contentright__relatedItems
+        = link_to "#" do
+          ベビー・キッズをもっと見る
+      .main-contents__show-main__contentright__relatedItems__productLists
+        .main-contents__show-main__contentright__relatedItems__productLists__productList
+          = link_to "#" do
+            %figure.productList--img
+              = image_tag "test2.png"
+                - if @product.exhibition_status.present?
+                .productList--img__items-sold
+                  .productList--img__items-sold__inner 
+                    SOLD
+            .main-contents__show-main__contentright__relatedItems__productLists__productList__body
+              %h3.product--name
+                デコチャリ
+              .details
+                %ul
+                  %li
+                    19999円 
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p
+                  (税込)
+.div#comment_form
+  = render "comments/form"
+.div#comment_area
+  = render "comments/comment"
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
+= render partial: 'layouts/display'

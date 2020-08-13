@@ -1,0 +1,39 @@
+.left-list
+  .my-page-box
+    %p マイページ
+    %ul.category-list
+      %li
+        .list-item
+          = link_to new_product_path do
+            出品する
+      %li
+        .list-item
+          = link_to "#" do
+            出品した商品
+      %li
+        .list-item
+          = link_to "#" do
+            購入した商品
+      %li
+        .list-item
+          = link_to "#" do
+            お問い合わせ
+      %li
+        .list-item
+          = link_to "#" do
+            お知らせ
+    %h1 設定
+    .setting-list
+      .list-setting
+        .list-setting_item
+          - credit_card = CreditCard.where(user_id: current_user.id)
+          - if credit_card.blank?
+            = link_to new_credit_card_path do
+              クレジットカード登録
+          - else 
+            = link_to credit_card_path (current_user) do
+              クレジットカード詳細・削除
+                
+      .list-setting
+        = link_to edit_user_path (current_user) do
+          ログアウト

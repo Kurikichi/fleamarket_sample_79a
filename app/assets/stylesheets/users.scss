@@ -1,0 +1,127 @@
+.content-my-page {
+  height: 1200px;
+  background-color: #f5f5f5;
+  position: relative;
+  .header-list {
+    background-color: white;
+    border: 1px solid #eee;
+  }
+  .users-main {
+    padding: 20px 100px;
+    background-repeat: no-repeat;
+    .rigth_content {
+      width: 700px;
+      float: right;
+      margin-top: 50px;
+      .name-box {
+        width: 700px;
+        height: 150px;
+        background-color: white;
+        padding: 20px;
+        .imge-box {
+          height: 10px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          %sapn {
+            border-radius: 30px;
+          }
+        }
+        .content {
+          height: 25px;
+          p {
+            text-align: center;
+          }
+        }
+      }
+      .tabs {
+        margin-top: 12px;
+        width:700px;
+        height: 300px;
+        background-color: white;
+        .tab-label {
+          width: calc(50% - 5px);
+          height: 80px;
+          display: inline-block;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+          border: 1px solid #999;
+          background-color: #f3f3f3;
+          margin-left: 1px;
+          margin-right: 1px;
+          padding: 3px 6px;
+          font-size: 30px;
+          padding: 20px;
+          text-align: center;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+        input[name="tab-radio"] {
+          display: none;
+        }
+        .tab-content {
+          display: none;
+          padding: 10px;
+          min-height: 200px;
+        }
+        #tab-1:checked ~ .tab-1-content, #tab-2:checked ~ .tab-2-content, #tab-3:checked ~ .tab-3-content, #tab-4:checked ~ .tab-4-content, #tab-5:checked ~ .tab-5-content {
+          display: block;
+        }
+        input[name="tab-radio"]:checked + .tab-label {
+          background-color: #fff;
+        }
+      }
+    }
+      .buy-box {
+        width: 700px;
+        margin-top: 80px;
+        &_name {
+          height: 80px;
+          background-color: white;
+          padding: 20px;
+          font-size: 30px;
+        }
+        .tabs02 {
+          margin-top: 12px;
+          width:700px;
+          height: 300px;
+          background-color: white;
+          .tab02-label {
+            width: calc(50% - 5px);
+            height: 80px;
+            display: inline-block;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid #999;
+            background-color: #f3f3f3;
+            padding: 3px 6px;
+            font-size: 30px;
+            text-align: center;
+            padding: 20px;
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+          input[name="tab-radio"] {
+            display: none;
+          }
+          .tab-content {
+            display: none;
+            padding: 10px;
+            min-height: 200px;
+          }
+          #tab02-1:checked ~ .tab02-1-content, #tab02-2:checked ~ .tab02-2-content, #tab02-3:checked ~ .tab02-3-content, #tab02-4:checked ~ .tab02-4-content, #tab02-5:checked ~ .tab02-5-content {
+            display: block;
+          }
+          input[name="tab-radio"]:checked + .tab-label {
+            background-color: #fff;
+          }
+        }
+      }
+    .left-list {
+      float: left;
+    }
+  }
+}
