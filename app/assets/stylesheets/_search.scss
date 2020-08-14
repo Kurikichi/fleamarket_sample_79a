@@ -3,7 +3,8 @@
     width: 880px;
     margin: 26px auto;
     display: flex;
-    overflow: scroll;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
     a {
       text-decoration: none;
       position: relative;
@@ -11,6 +12,7 @@
     .search-productList {
       width: 220px;
       display: inline-block;
+      scroll-snap-align: start;
       a {
         display: inline-block;
         background-color: white;
